@@ -1,0 +1,33 @@
+{
+  "ts": "2026-05-10 17:12:57",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1jUpHa1usMIL0ZelJa1K6oXv0jUpHU&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.paypb.PayService",
+  "method": "GetRechargeInfo",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.paypb.PayService",
+    "method_name": "GetRechargeInfo",
+    "message_type": 2,
+    "client_seq": "13",
+    "server_seq": "13",
+    "metadata": {
+      "x-traceid": "MzY1MzQ4MzcyNzk3OTIwYjZiYzM5YWZlYjA3Njg4MDM="
+    }
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1jUpHa1usMIL0ZelJa1K6oXv0jUpHU&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "Cl8KF2dhbWVwYi5wYXlwYi5QYXlTZXJ2aWNlEg9HZXRSZWNoYXJnZUluZm8YAiANKA1CLQoJeC10cmFjZWlkEiAzNjUzNDgzNzI3OTc5MjBiNmJjMzlhZmViMDc2ODgwMxICCgA=",
+    "text": ""
+  }
+}

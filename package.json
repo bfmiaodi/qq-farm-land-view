@@ -1,0 +1,23 @@
+{
+  "name": "qq-farm-bot-alllands-decoder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "Standalone decoder for QQ Farm AllLands websocket binary messages",
+  "bin": {
+    "decode-all-lands": "./src/index.js",
+    "reqable-ws-log-server": "./src/reqable-log-server.js"
+  },
+  "scripts": {
+    "decode": "node ./src/index.js",
+    "decode:raw": "node ./src/index.js ./data.bin --raw-json",
+    "decode:pretty": "node ./src/index.js ./data.bin --pretty-json",
+    "log-server": "node ./src/reqable-log-server.js",
+    "catalog": "node ./src/export-crop-catalog.js"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "express": "^4.21.0",
+    "protobufjs": "^8.0.0"
+  }
+}

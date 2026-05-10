@@ -1,0 +1,2707 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QQ 农场土地信息</title>
+  <style>
+    :root {
+      --bg: #f3efe6;
+      --panel: #fffaf1;
+      --card: #ffffff;
+      --line: #e5d8bf;
+      --text: #2f261c;
+      --muted: #7a6a55;
+      --good: #2f855a;
+      --warn: #b7791f;
+      --danger: #c53030;
+      --info: #2b6cb0;
+      --accent: #805ad5;
+      --shadow: 0 12px 24px rgba(80, 58, 30, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 30%),
+        linear-gradient(180deg, #efe7d5 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+    .wrap {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #fff8e8 0%, #f6ead2 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      line-height: 1.1;
+    }
+    .hero p {
+      margin: 4px 0;
+      color: var(--muted);
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .summary-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .summary-card .num {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .summary-card .label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .card-subtitle {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      min-height: 24px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #f1eadc;
+      color: var(--text);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .badge-good { background: #e6ffef; color: var(--good); }
+    .badge-warn { background: #fff5df; color: var(--warn); }
+    .badge-danger { background: #fff0f0; color: var(--danger); }
+    .badge-info { background: #eaf4ff; color: var(--info); }
+    .badge-accent { background: #f3edff; color: var(--accent); }
+    .badge-muted { background: #f3efe9; color: var(--muted); }
+    .badge-neutral { background: #f5f1e8; color: var(--text); }
+    .kv-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .kv {
+      background: var(--panel);
+      border: 1px solid #efe1c3;
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .kv-label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .kv-value {
+      font-weight: 700;
+      word-break: break-word;
+      line-height: 1.5;
+    }
+    .seed-image {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 6px;
+      flex: 0 0 auto;
+    }
+    .seed-image-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .raw-panel {
+      margin-top: 14px;
+      border-top: 1px dashed var(--line);
+      padding-top: 12px;
+    }
+    .raw-panel summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .raw-panel pre {
+      margin: 10px 0 0;
+      padding: 12px;
+      border-radius: 12px;
+      background: #231d17;
+      color: #f8f0e3;
+      overflow: auto;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    @media (max-width: 720px) {
+      .wrap { padding: 14px; }
+      .hero h1 { font-size: 26px; }
+      .kv-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>QQ 农场土地信息</h1>
+      <p>来源文件：/Users/hqh/Desktop/03-study/scripts/data.bin</p>
+      <p>消息：gamepb.plantpb.PlantService / AllLands</p>
+      <p>客户端序号：7，服务端序号：7</p>
+      <p>TraceId：NTM4NWI2OGZhM2VlZDllZGY0MWU4Yzk4ZmUyNTJhMzA=</p>
+      <p>生成时间：2026/5/10 00:04:15</p>
+    </section>
+    <section class="summary-grid">
+      <div class="summary-card"><div class="num">24</div><div class="label">土地总数</div></div>
+      <div class="summary-card"><div class="num">24</div><div class="label">已解锁</div></div>
+      <div class="summary-card"><div class="num">24</div><div class="label">生长中</div></div>
+      <div class="summary-card"><div class="num">0</div><div class="label">可收获</div></div>
+      <div class="summary-card"><div class="num">0</div><div class="label">缺水</div></div>
+      <div class="summary-card"><div class="num">1</div><div class="label">长草</div></div>
+      <div class="summary-card"><div class="num">0</div><div class="label">生虫</div></div>
+      <div class="summary-card"><div class="num">0</div><div class="label">枯萎</div></div>
+    </section>
+    <section class="cards">
+      
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#1 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 1s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:16</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">1</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;1&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;90&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342236&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349148&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356060&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;weeds_time&quot;: &quot;1778362582&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362972&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369884&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;weeds_time&quot;: &quot;1778375606&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376796&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#2 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 1s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:16</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">2</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">2</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;2&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;93&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342236&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;,
+        &quot;insect_time&quot;: &quot;1778345392&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349148&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;insect_time&quot;: &quot;1778355363&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356060&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;insect_time&quot;: &quot;1778360041&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362972&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778365271&quot;,
+        &quot;weeds_time&quot;: &quot;1778363671&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369884&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;insect_time&quot;: &quot;1778370940&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376796&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#3 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 1s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:16</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">3</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">3</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;3&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;96&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342236&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349148&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356060&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;dry_time&quot;: &quot;1778356459&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362972&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778367273&quot;,
+        &quot;weeds_time&quot;: &quot;1778363569&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369884&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376796&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#4 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 1s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:16</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">4</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;4&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;99&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342236&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;,
+        &quot;weeds_time&quot;: &quot;1778346139&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349148&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;weeds_time&quot;: &quot;1778355729&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356060&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;dry_time&quot;: &quot;1778359928&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362972&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369884&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;dry_time&quot;: &quot;1778370874&quot;,
+        &quot;weeds_time&quot;: &quot;1778374529&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376796&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#5 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 1s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:16</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">5</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">5</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;5&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;102&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342236&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349148&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356060&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;insect_time&quot;: &quot;1778356862&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362972&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;insect_time&quot;: &quot;1778367005&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369884&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;dry_time&quot;: &quot;1778373147&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376796&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#6 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 1s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:16</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">6</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">6</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;6&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;105&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342236&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;,
+        &quot;insect_time&quot;: &quot;1778344755&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349148&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;dry_time&quot;: &quot;1778354537&quot;,
+        &quot;weeds_time&quot;: &quot;1778349384&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356060&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;weeds_time&quot;: &quot;1778357427&quot;,
+        &quot;insect_time&quot;: &quot;1778361137&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362972&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;insect_time&quot;: &quot;1778365650&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369884&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;weeds_time&quot;: &quot;1778375583&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376796&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#7 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 1s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:16</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">7</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">7</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;7&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;108&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342236&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349148&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;weeds_time&quot;: &quot;1778352040&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356060&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;insect_time&quot;: &quot;1778358511&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362972&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369884&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;dry_time&quot;: &quot;1778372018&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376796&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;is_shared&quot;: true,
+  &quot;can_share&quot;: true,
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#8 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 1s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:16</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">8</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">8</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;8&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;111&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342236&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;,
+        &quot;dry_time&quot;: &quot;1778346869&quot;,
+        &quot;weeds_time&quot;: &quot;1778344492&quot;,
+        &quot;insect_time&quot;: &quot;1778343040&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349148&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;weeds_time&quot;: &quot;1778355718&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356060&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;weeds_time&quot;: &quot;1778362362&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362972&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778367045&quot;,
+        &quot;weeds_time&quot;: &quot;1778363674&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369884&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376796&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;can_share&quot;: true,
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#9 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 2s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:17</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">9</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">9</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;9&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;114&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342237&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;,
+        &quot;dry_time&quot;: &quot;1778344699&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349149&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;insect_time&quot;: &quot;1778354210&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356061&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362973&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369885&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;dry_time&quot;: &quot;1778371944&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376797&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;is_shared&quot;: true,
+  &quot;can_share&quot;: true,
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#10 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 2s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:17</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">10</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">10</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;10&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;117&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342237&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349149&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;weeds_time&quot;: &quot;1778349917&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356061&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;dry_time&quot;: &quot;1778359490&quot;,
+        &quot;insect_time&quot;: &quot;1778358778&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362973&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778365107&quot;,
+        &quot;weeds_time&quot;: &quot;1778366723&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369885&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;weeds_time&quot;: &quot;1778375417&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376797&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#11 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 2s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:17</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">11</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">11</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;11&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;120&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342237&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349149&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;insect_time&quot;: &quot;1778355987&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356061&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;dry_time&quot;: &quot;1778361750&quot;,
+        &quot;insect_time&quot;: &quot;1778357358&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362973&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778364125&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369885&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;insect_time&quot;: &quot;1778374484&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376797&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#12 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 2s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:17</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">12</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">12</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;12&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;123&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342237&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349149&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356061&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;insect_time&quot;: &quot;1778357146&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362973&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369885&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;dry_time&quot;: &quot;1778375666&quot;,
+        &quot;insect_time&quot;: &quot;1778372793&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376797&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#13 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 2s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:17</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">13</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">13</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;13&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;126&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342237&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349149&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;weeds_time&quot;: &quot;1778354189&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356061&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;insect_time&quot;: &quot;1778359853&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362973&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;weeds_time&quot;: &quot;1778364648&quot;,
+        &quot;insect_time&quot;: &quot;1778363386&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369885&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;dry_time&quot;: &quot;1778371681&quot;,
+        &quot;insect_time&quot;: &quot;1778376720&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376797&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#14 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 2s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:17</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">14</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">14</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;14&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;129&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342237&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349149&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;dry_time&quot;: &quot;1778351451&quot;,
+        &quot;weeds_time&quot;: &quot;1778350270&quot;,
+        &quot;insect_time&quot;: &quot;1778352771&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356061&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;weeds_time&quot;: &quot;1778362550&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362973&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;insect_time&quot;: &quot;1778368679&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369885&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376797&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#15 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span> <span class="badge badge-accent">已变异 石竹花</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#805ad5;font-weight:800;">已变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">石竹花</span></div>
+          <div class="kv"><span class="kv-label">变异类型</span><span class="kv-value">已变异（类型待确认）</span></div>
+          <div class="kv"><span class="kv-label">变异数量</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">协议变异ID</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">变异时间线</span><span class="kv-value">4&nbsp;@&nbsp;2026/5/10 07:38:05</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 2s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:17</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">2104</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">2104</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">15</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">15</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;15&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;132&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342237&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349149&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;dry_time&quot;: &quot;1778350899&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356061&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362973&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778366175&quot;,
+        &quot;weeds_time&quot;: &quot;1778363585&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369885&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;mutants&quot;: [
+          {
+            &quot;mutant_time&quot;: &quot;1778369885&quot;,
+            &quot;mutant_config_id&quot;: &quot;4&quot;
+          }
+        ]
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376797&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;2104&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;2104&quot;,
+    &quot;mutant_config_ids&quot;: [
+      &quot;4&quot;
+    ]
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#16 石竹花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">9h 29m 2s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 09:33:17</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">16</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">16</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;16&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;135&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020256&quot;,
+    &quot;name&quot;: &quot;石竹花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778342237&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;,
+        &quot;weeds_time&quot;: &quot;1778347037&quot;,
+        &quot;insect_time&quot;: &quot;1778343828&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349149&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;dry_time&quot;: &quot;1778353700&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356061&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778362973&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778369885&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;insect_time&quot;: &quot;1778375708&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778376797&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40256&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#17 针垫花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">7h 44m 58s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 07:49:13</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">17</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">17</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;17&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;138&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020261&quot;,
+    &quot;name&quot;: &quot;针垫花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778335993&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778342905&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;insect_time&quot;: &quot;1778346953&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349817&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;dry_time&quot;: &quot;1778351987&quot;,
+        &quot;weeds_time&quot;: &quot;1778352059&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356729&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;weeds_time&quot;: &quot;1778363107&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778363641&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778370553&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40261&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#18 针垫花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">7h 44m 58s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 07:49:13</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">18</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">18</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;18&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;141&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020261&quot;,
+    &quot;name&quot;: &quot;针垫花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778335993&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778342905&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;insect_time&quot;: &quot;1778343254&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349817&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;dry_time&quot;: &quot;1778351834&quot;,
+        &quot;insect_time&quot;: &quot;1778351199&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356729&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778363077&quot;,
+        &quot;insect_time&quot;: &quot;1778362995&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778363641&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;dry_time&quot;: &quot;1778367495&quot;,
+        &quot;insect_time&quot;: &quot;1778364686&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778370553&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40261&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#19 黄金·针垫花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span> <span class="badge badge-accent">已变异 黄金·针垫花</span> <span class="badge badge-accent">黄金变异</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#805ad5;font-weight:800;">已变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">黄金·针垫花</span></div>
+          <div class="kv"><span class="kv-label">变异类型</span><span class="kv-value">黄金</span></div>
+          <div class="kv"><span class="kv-label">变异数量</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">协议变异ID</span><span class="kv-value">5</span></div>
+          <div class="kv"><span class="kv-label">变异时间线</span><span class="kv-value">5&nbsp;@&nbsp;2026/5/10 05:54:01</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">7h 44m 58s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 07:49:13</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">40</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">40</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">19</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">19</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;19&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;144&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020261&quot;,
+    &quot;name&quot;: &quot;黄金·针垫花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778335993&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778342905&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;weeds_time&quot;: &quot;1778349395&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349817&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356729&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778358177&quot;,
+        &quot;weeds_time&quot;: &quot;1778357552&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778363641&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;mutants&quot;: [
+          {
+            &quot;mutant_time&quot;: &quot;1778363641&quot;,
+            &quot;mutant_config_id&quot;: &quot;5&quot;
+          }
+        ]
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778370553&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;1040261&quot;,
+    &quot;fruit_num&quot;: &quot;40&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;40&quot;,
+    &quot;mutant_config_ids&quot;: [
+      &quot;5&quot;
+    ]
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#20 针垫花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">7h 44m 58s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 07:49:13</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">20</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">20</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;20&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;147&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020261&quot;,
+    &quot;name&quot;: &quot;针垫花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778335993&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778342905&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;dry_time&quot;: &quot;1778343743&quot;,
+        &quot;insect_time&quot;: &quot;1778343755&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349817&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;weeds_time&quot;: &quot;1778350257&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356729&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778359475&quot;,
+        &quot;weeds_time&quot;: &quot;1778357232&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778363641&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;dry_time&quot;: &quot;1778369006&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778370553&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40261&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#21 针垫花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">7h 44m 58s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 07:49:13</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">21</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">21</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;21&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;150&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020261&quot;,
+    &quot;name&quot;: &quot;针垫花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778335993&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778342905&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;insect_time&quot;: &quot;1778342997&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349817&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356729&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;weeds_time&quot;: &quot;1778363357&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778363641&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778370553&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40261&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#22 哈哈小南瓜</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span> <span class="badge badge-accent">已变异 哈哈小南瓜</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#805ad5;font-weight:800;">已变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">哈哈小南瓜</span></div>
+          <div class="kv"><span class="kv-label">变异类型</span><span class="kv-value">已变异（类型待确认）</span></div>
+          <div class="kv"><span class="kv-label">变异数量</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">协议变异ID</span><span class="kv-value">6</span></div>
+          <div class="kv"><span class="kv-label">变异时间线</span><span class="kv-value">6&nbsp;@&nbsp;2026/5/10 03:58:49</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">7h 44m 58s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 07:49:13</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">40</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">40</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">22</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">22</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;22&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;153&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020261&quot;,
+    &quot;name&quot;: &quot;哈哈小南瓜&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778335993&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778342905&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349817&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;weeds_time&quot;: &quot;1778353060&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356729&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;dry_time&quot;: &quot;1778357679&quot;,
+        &quot;mutants&quot;: [
+          {
+            &quot;mutant_time&quot;: &quot;1778356729&quot;,
+            &quot;mutant_config_id&quot;: &quot;6&quot;
+          }
+        ]
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778363641&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;weeds_time&quot;: &quot;1778370315&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778370553&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;49001&quot;,
+    &quot;fruit_num&quot;: &quot;40&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;40&quot;,
+    &quot;mutant_config_ids&quot;: [
+      &quot;6&quot;
+    ]
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#23 针垫花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-warn">长草</span> <span class="badge badge-accent">可偷</span> <span class="badge badge-accent">已变异 针垫花</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#805ad5;font-weight:800;">已变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">针垫花</span></div>
+          <div class="kv"><span class="kv-label">变异类型</span><span class="kv-value">已变异（类型待确认）</span></div>
+          <div class="kv"><span class="kv-label">变异数量</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">协议变异ID</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">变异时间线</span><span class="kv-value">1&nbsp;@&nbsp;2026/5/10 02:03:37</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">7h 44m 58s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 07:49:13</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">23</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">23</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;23&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;156&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020261&quot;,
+    &quot;name&quot;: &quot;针垫花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778335993&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;,
+        &quot;weeds_time&quot;: &quot;1778342635&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778342905&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;weeds_time&quot;: &quot;1778347273&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349817&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;,
+        &quot;weeds_time&quot;: &quot;1778356158&quot;,
+        &quot;insect_time&quot;: &quot;1778352495&quot;,
+        &quot;mutants&quot;: [
+          {
+            &quot;mutant_time&quot;: &quot;1778349817&quot;,
+            &quot;mutant_config_id&quot;: &quot;1&quot;
+          }
+        ]
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356729&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778363641&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778370553&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40261&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;,
+    &quot;mutant_config_ids&quot;: [
+      &quot;1&quot;
+    ]
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+
+      <article class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">#24 针垫花</div>
+            <div class="card-subtitle"><span class="badge badge-info">生长中</span> <span class="badge badge-neutral">阶段: 种子</span></div>
+          </div>
+          <div class="seed-image seed-image-empty">No Image</div>
+        </div>
+        <div class="badge-row"><span class="badge badge-accent">可偷</span></div>
+        
+        <div class="kv-grid" style="margin-bottom: 10px;">
+          <div class="kv"><span class="kv-label">当前变异状态</span><span class="kv-value"><span style="color:#7a6a55;font-weight:700;">无变异</span></span></div>
+          <div class="kv"><span class="kv-label">变异结果</span><span class="kv-value">-</span></div>
+        </div>
+        <div class="kv-grid">
+          <div class="kv"><span class="kv-label">土地等级</span><span class="kv-value">4/5</span></div>
+          <div class="kv"><span class="kv-label">地块等级</span><span class="kv-value">4</span></div>
+          <div class="kv"><span class="kv-label">季数</span><span class="kv-value">1/1</span></div>
+          <div class="kv"><span class="kv-label">成熟倒计时</span><span class="kv-value">7h 44m 58s</span></div>
+          <div class="kv"><span class="kv-label">成熟时间</span><span class="kv-value">2026/5/10 07:49:13</span></div>
+          <div class="kv"><span class="kv-label">土地尺寸</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">占地尺寸</span><span class="kv-value">1x1</span></div>
+          <div class="kv"><span class="kv-label">种子ID</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">当前果实数</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">基础果实数</span><span class="kv-value">0</span></div>
+          <div class="kv"><span class="kv-label">估算倍率</span><span class="kv-value">-</span></div>
+          <div class="kv"><span class="kv-label">土地产量加成</span><span class="kv-value">30%</span></div>
+          <div class="kv"><span class="kv-label">剩余果实</span><span class="kv-value">1052</span></div>
+          <div class="kv"><span class="kv-label">剩余施肥次数</span><span class="kv-value">1</span></div>
+          <div class="kv"><span class="kv-label">主地块ID</span><span class="kv-value">24</span></div>
+          <div class="kv"><span class="kv-label">占用地块</span><span class="kv-value">24</span></div>
+        </div>
+        <details class="raw-panel">
+          <summary>查看原始 JSON</summary>
+          <pre>{
+  &quot;id&quot;: &quot;24&quot;,
+  &quot;unlocked&quot;: true,
+  &quot;level&quot;: &quot;4&quot;,
+  &quot;max_level&quot;: &quot;5&quot;,
+  &quot;upgrade_condition&quot;: {
+    &quot;need_level&quot;: &quot;1&quot;,
+    &quot;need_gold&quot;: &quot;159&quot;
+  },
+  &quot;buff&quot;: {
+    &quot;plant_yield_bonus&quot;: &quot;30000&quot;,
+    &quot;planting_time_reduction&quot;: &quot;2000&quot;,
+    &quot;plant_exp_bonus&quot;: &quot;2000&quot;
+  },
+  &quot;plant&quot;: {
+    &quot;id&quot;: &quot;1020261&quot;,
+    &quot;name&quot;: &quot;针垫花&quot;,
+    &quot;phases&quot;: [
+      {
+        &quot;phase&quot;: 1,
+        &quot;begin_time&quot;: &quot;1778335993&quot;,
+        &quot;phase_id&quot;: &quot;1&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778342905&quot;,
+        &quot;phase_id&quot;: &quot;6&quot;,
+        &quot;dry_time&quot;: &quot;1778343555&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778349817&quot;,
+        &quot;phase_id&quot;: &quot;11&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778356729&quot;,
+        &quot;phase_id&quot;: &quot;18&quot;,
+        &quot;weeds_time&quot;: &quot;1778361779&quot;,
+        &quot;insect_time&quot;: &quot;1778358435&quot;
+      },
+      {
+        &quot;phase&quot;: 2,
+        &quot;begin_time&quot;: &quot;1778363641&quot;,
+        &quot;phase_id&quot;: &quot;21&quot;,
+        &quot;insect_time&quot;: &quot;1778364630&quot;
+      },
+      {
+        &quot;phase&quot;: 6,
+        &quot;begin_time&quot;: &quot;1778370553&quot;,
+        &quot;phase_id&quot;: &quot;10&quot;
+      }
+    ],
+    &quot;season&quot;: &quot;1&quot;,
+    &quot;fruit_id&quot;: &quot;40261&quot;,
+    &quot;fruit_num&quot;: &quot;1052&quot;,
+    &quot;grow_sec&quot;: &quot;34560&quot;,
+    &quot;stealable&quot;: true,
+    &quot;left_inorc_fert_times&quot;: &quot;1&quot;,
+    &quot;left_fruit_num&quot;: &quot;1052&quot;
+  },
+  &quot;lands_level&quot;: &quot;4&quot;
+}</pre>
+        </details>
+      </article>
+    
+    </section>
+  </div>
+</body>
+</html>

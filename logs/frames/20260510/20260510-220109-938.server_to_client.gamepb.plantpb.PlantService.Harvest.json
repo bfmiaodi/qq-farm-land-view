@@ -1,0 +1,33 @@
+{
+  "ts": "2026-05-10 22:01:09",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0b1jc70w3mSg173ojt2w3hwWNV2jc709&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.plantpb.PlantService",
+  "method": "Harvest",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.plantpb.PlantService",
+    "method_name": "Harvest",
+    "message_type": 2,
+    "client_seq": "116",
+    "server_seq": "116",
+    "metadata": {
+      "x-traceid": "MDI3MzUyNGVmZjMyNmUxZjQ4MWUwYzk4NzI2MTZlOWE="
+    }
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0b1jc70w3mSg173ojt2w3hwWNV2jc709&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "ClsKG2dhbWVwYi5wbGFudHBiLlBsYW50U2VydmljZRIHSGFydmVzdBgCIHQodEItCgl4LXRyYWNlaWQSIDAyNzM1MjRlZmYzMjZlMWY0ODFlMGM5ODcyNjE2ZTlhEt4FCowBCBUQARgCIAVCDggBED8aCAjpBxDA1MMDSgMIkE5SagiYoj4SCeWNoeeJueWFsCIKCAYQpJ6C0AYYCigBSBJQ+LkCWLYCcgqmw4bFBMGE+twDeMDRAoABAYgBAZABpAKwAZsQ0AH4uQLYAbYC4AHpB+gB8AHwAekH+AHwAZICCgjpBxDIARiYoj6AAQIKjAEIFhABGAIgBUIOCAEQQRoICOkHEMCJ3ANKAwiQTlJqCJiiPhIJ5Y2h54m55YWwIgoIBhCknoLQBhgKKAFIGlD4uQJYtgJyCqbDhsUEwYT63AN4wNECgAEBiAEBkAGcArABmxDQAfi5AtgBtgLgAekH6AHwAfAB6Qf4AfABkgIKCOkHEMgBGJiiPoABAgqMAQgXEAEYAiAFQg4IARBDGggI6QcQwL70A0oDCJBOUmoImKI+EgnljaHnibnlhbAiCggGEKSegtAGGAooAUgSUPi5Ali2AnIKpsOGxQTBhPrcA3jA0QKAAQGIAQGQAaQCsAGbENAB+LkC2AG2AuAB6QfoAfAB8AHpB/gB8AGSAgoI6QcQyAEYmKI+gAECCowBCBgQARgCIAVCDggBEEUaCAjpBxDA84wESgMIkE5SagiYoj4SCeWNoeeJueWFsCIKCAYQpJ6C0AYYCigBSE5Q+LkCWLYCcgqmw4bFBMGE+twDeMDRAoABAYgBAZAB6AGwAZsQ0AH4uQLYAbYC4AHpB+gB8AHwAekH+AHwAZICCgjpBxDIARiYoj6AAQISBgj4uQIQCBIGCPi5AhAMEgYI+LkCEAoSBgj4uQIQTCIMCJhOEOYBGP+T69wDOhsIFRIXCPi5AhAIogYOCPABEOkHIgYI6QcQ8AE6GwgWEhcI+LkCEAyiBg4I8AEQ6QciBgjpBxDwATobCBcSFwj4uQIQCqIGDgjwARDpByIGCOkHEPABOhsIGBIXCPi5AhBMogYOCPABEOkHIgYI6QcQ8AE=",
+    "text": ""
+  }
+}

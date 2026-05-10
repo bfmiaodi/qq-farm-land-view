@@ -1,0 +1,6897 @@
+{
+  "说明": "QQ农场 AllLands 土地信息返回，已附带中文字段解释",
+  "meta": {
+    "service_name": {
+      "含义": "服务名",
+      "值": "gamepb.plantpb.PlantService"
+    },
+    "method_name": {
+      "含义": "方法名",
+      "值": "AllLands"
+    },
+    "message_type": {
+      "含义": "消息类型",
+      "值": 2,
+      "说明": "响应"
+    },
+    "client_seq": {
+      "含义": "客户端序号",
+      "值": "177"
+    },
+    "server_seq": {
+      "含义": "服务端序号",
+      "值": "177"
+    },
+    "metadata": {
+      "含义": "附加元数据",
+      "值": {
+        "x-traceid": {
+          "含义": "x-traceid",
+          "值": "NDRlNmQ1ZWVhMDIxNWRkMzE4YWI3YmFhOTIyNDA1NzQ="
+        }
+      }
+    }
+  },
+  "summary": {
+    "total": {
+      "含义": "土地总数",
+      "值": 24
+    },
+    "unlocked": {
+      "含义": "已解锁土地数",
+      "值": 24
+    },
+    "locked": {
+      "含义": "未解锁土地数",
+      "值": 0
+    },
+    "empty": {
+      "含义": "空地数",
+      "值": 0
+    },
+    "growing": {
+      "含义": "生长中土地数",
+      "值": 24
+    },
+    "harvestable": {
+      "含义": "可收获土地数",
+      "值": 0
+    },
+    "dead": {
+      "含义": "枯萎土地数",
+      "值": 0
+    },
+    "needWater": {
+      "含义": "缺水土地数",
+      "值": 0
+    },
+    "needWeed": {
+      "含义": "长草土地数",
+      "值": 0
+    },
+    "needBug": {
+      "含义": "生虫土地数",
+      "值": 0
+    }
+  },
+  "lands": [
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 1
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1280
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 20s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 1
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          1
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 2
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1280
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 20s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 2
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          2
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 3
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1280
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 20s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 3
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          3
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 4
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1280
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 20s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 4
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          4
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 5
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1281
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 21s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 5
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          5
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 6
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1281
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 21s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 6
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          6
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 7
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1281
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 21s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 7
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          7
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 8
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1280
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 20s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 8
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          8
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 9
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1281
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 21s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 9
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          9
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 10
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1281
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 21s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 10
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          10
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 11
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1282
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 22s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 11
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          11
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 12
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1282
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 22s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 12
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          12
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": [
+          1
+        ]
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": [
+          {
+            "mutantTime": 1778420245,
+            "mutantConfigId": 1,
+            "weatherId": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 13
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1282
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 22s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 13
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          13
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 14
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1282
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 22s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 14
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          14
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 15
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1282
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 22s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 15
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          15
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 16
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1282
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 22s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 16
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          16
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 17
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1281
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 21s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 17
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          17
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 18
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1281
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 21s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 18
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          18
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 19
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1283
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 23s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 19
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          19
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 1600
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 1600
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 8
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": [
+          4
+        ]
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": [
+          {
+            "mutantTime": 1778420246,
+            "mutantConfigId": 4,
+            "weatherId": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 20
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1283
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 23s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 20
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          20
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 21
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1283
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 23s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 21
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          21
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 22
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1283
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 23s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 22
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          22
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 23
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1283
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 23s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 23
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          23
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    },
+    {
+      "id": {
+        "含义": "土地ID",
+        "值": 24
+      },
+      "unlocked": {
+        "含义": "是否已解锁",
+        "值": true
+      },
+      "status": {
+        "含义": "土地状态",
+        "值": "growing",
+        "说明": "生长中"
+      },
+      "level": {
+        "含义": "土地等级",
+        "值": 4
+      },
+      "maxLevel": {
+        "含义": "土地最高等级",
+        "值": 5
+      },
+      "landsLevel": {
+        "含义": "地块等级",
+        "值": 4
+      },
+      "landSize": {
+        "含义": "土地尺寸",
+        "值": 0
+      },
+      "couldUnlock": {
+        "含义": "是否可解锁",
+        "值": false
+      },
+      "couldUpgrade": {
+        "含义": "是否可升级",
+        "值": false
+      },
+      "phaseName": {
+        "含义": "当前阶段",
+        "值": "germination",
+        "说明": "发芽"
+      },
+      "plantName": {
+        "含义": "作物名称",
+        "值": "芒果"
+      },
+      "currentSeason": {
+        "含义": "当前季数",
+        "值": 2
+      },
+      "totalSeason": {
+        "含义": "总季数",
+        "值": 2
+      },
+      "matureInSec": {
+        "含义": "距离成熟秒数",
+        "值": 1283
+      },
+      "matureInText": {
+        "含义": "距离成熟文本",
+        "值": "21m 23s"
+      },
+      "needWater": {
+        "含义": "是否缺水",
+        "值": false
+      },
+      "needWeed": {
+        "含义": "是否长草",
+        "值": false
+      },
+      "needBug": {
+        "含义": "是否生虫",
+        "值": false
+      },
+      "occupiedByMaster": {
+        "含义": "是否被主地块占用",
+        "值": false
+      },
+      "masterLandId": {
+        "含义": "主地块ID",
+        "值": 24
+      },
+      "occupiedLandIds": {
+        "含义": "占用地块ID列表",
+        "值": [
+          24
+        ]
+      },
+      "plantSize": {
+        "含义": "作物占地尺寸",
+        "值": 1
+      },
+      "seedId": {
+        "含义": "种子ID",
+        "值": 20057
+      },
+      "seedImage": {
+        "含义": "种子图片路径",
+        "值": "./game-config/seed_images_named/20057_芒果_Crop_57_Seed.png"
+      },
+      "stealable": {
+        "含义": "是否可偷",
+        "值": true
+      },
+      "fruitNum": {
+        "含义": "当前果实数",
+        "值": 800
+      },
+      "leftFruitNum": {
+        "含义": "剩余果实数",
+        "值": 800
+      },
+      "leftInorganicFertTimes": {
+        "含义": "剩余施肥次数",
+        "值": 1
+      },
+      "baseFruitCount": {
+        "含义": "基础果实数",
+        "值": 200
+      },
+      "yieldBonus": {
+        "含义": "土地产量加成原始值",
+        "值": 30000
+      },
+      "yieldBonusPercent": {
+        "含义": "土地产量加成百分比",
+        "值": 30
+      },
+      "estimatedYieldRatio": {
+        "含义": "估算倍率",
+        "值": 4
+      },
+      "mutantConfigIds": {
+        "含义": "变异配置ID列表",
+        "值": []
+      },
+      "phaseMutants": {
+        "含义": "阶段变异事件",
+        "值": []
+      }
+    }
+  ],
+  "raw_body": {
+    "lands": {
+      "含义": "原始土地数组",
+      "值": [
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "1"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "90"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420243"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423123"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "2"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "93"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420243"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    },
+                    "dry_time": {
+                      "含义": "缺水时间",
+                      "值": "1778422503"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423123"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "3"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "96"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420243"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423123"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "4"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "99"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420243"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423123"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "5"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "102"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420244"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    },
+                    "dry_time": {
+                      "含义": "缺水时间",
+                      "值": "1778422439"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423124"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "6"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "105"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420244"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423124"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "7"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "108"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420244"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423124"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "is_shared": {
+            "含义": "是否共享地块",
+            "值": true
+          },
+          "can_share": {
+            "含义": "是否可共享",
+            "值": true
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "8"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "111"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420243"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423123"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "can_share": {
+            "含义": "是否可共享",
+            "值": true
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "9"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "114"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420244"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423124"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "is_shared": {
+            "含义": "是否共享地块",
+            "值": true
+          },
+          "can_share": {
+            "含义": "是否可共享",
+            "值": true
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "10"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "117"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420244"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    },
+                    "dry_time": {
+                      "含义": "缺水时间",
+                      "值": "1778421967"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423124"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "11"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "120"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420245"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    },
+                    "weeds_time": {
+                      "含义": "长草时间",
+                      "值": "1778422077"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423125"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "12"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "123"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420245"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    },
+                    "weeds_time": {
+                      "含义": "长草时间",
+                      "值": "1778422979"
+                    },
+                    "mutants": {
+                      "含义": "变异信息",
+                      "值": [
+                        {
+                          "mutant_time": "1778420245",
+                          "mutant_config_id": "1"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423125"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              },
+              "mutant_config_ids": {
+                "含义": "变异配置ID列表",
+                "值": [
+                  "1"
+                ]
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "13"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "126"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420245"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423125"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "14"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "129"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420245"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423125"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "15"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "132"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420245"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423125"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "16"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "135"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420245"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423125"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "17"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "138"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420244"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423124"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "18"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "141"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420244"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423124"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "19"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "144"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420246"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    },
+                    "mutants": {
+                      "含义": "变异信息",
+                      "值": [
+                        {
+                          "mutant_time": "1778420246",
+                          "mutant_config_id": "4"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423126"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "1600"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "1600"
+              },
+              "mutant_config_ids": {
+                "含义": "变异配置ID列表",
+                "值": [
+                  "4"
+                ]
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "20"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "147"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420246"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423126"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "21"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "150"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420246"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    },
+                    "dry_time": {
+                      "含义": "缺水时间",
+                      "值": "1778422998"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423126"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "22"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "153"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420246"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423126"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "23"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "156"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420246"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423126"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        },
+        {
+          "id": {
+            "含义": "土地ID",
+            "值": "24"
+          },
+          "unlocked": {
+            "含义": "是否已解锁",
+            "值": true
+          },
+          "level": {
+            "含义": "土地等级",
+            "值": "4"
+          },
+          "max_level": {
+            "含义": "土地最高等级",
+            "值": "5"
+          },
+          "upgrade_condition": {
+            "含义": "升级条件",
+            "值": {
+              "need_level": {
+                "含义": "need_level",
+                "值": "1"
+              },
+              "need_gold": {
+                "含义": "need_gold",
+                "值": "159"
+              }
+            }
+          },
+          "buff": {
+            "含义": "土地加成",
+            "值": {
+              "plant_yield_bonus": {
+                "含义": "plant_yield_bonus",
+                "值": "30000"
+              },
+              "planting_time_reduction": {
+                "含义": "planting_time_reduction",
+                "值": "2000"
+              },
+              "plant_exp_bonus": {
+                "含义": "plant_exp_bonus",
+                "值": "2000"
+              }
+            }
+          },
+          "plant": {
+            "含义": "作物信息",
+            "值": {
+              "id": {
+                "含义": "作物ID",
+                "值": "1020057"
+              },
+              "name": {
+                "含义": "作物名",
+                "值": "芒果"
+              },
+              "phases": {
+                "含义": "生长阶段列表",
+                "值": [
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 2,
+                      "说明": "发芽"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778420246"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "20"
+                    }
+                  },
+                  {
+                    "phase": {
+                      "含义": "阶段值",
+                      "值": 6,
+                      "说明": "成熟"
+                    },
+                    "begin_time": {
+                      "含义": "阶段开始时间",
+                      "值": "1778423126"
+                    },
+                    "phase_id": {
+                      "含义": "阶段ID",
+                      "值": "19"
+                    }
+                  }
+                ]
+              },
+              "season": {
+                "含义": "季数",
+                "值": "2"
+              },
+              "fruit_id": {
+                "含义": "果实ID",
+                "值": "40057"
+              },
+              "fruit_num": {
+                "含义": "果实数量",
+                "值": "800"
+              },
+              "grow_sec": {
+                "含义": "总生长秒数",
+                "值": "11520"
+              },
+              "stealable": {
+                "含义": "是否可偷",
+                "值": true
+              },
+              "left_inorc_fert_times": {
+                "含义": "剩余施肥次数",
+                "值": "1"
+              },
+              "left_fruit_num": {
+                "含义": "剩余果实数",
+                "值": "800"
+              }
+            }
+          },
+          "lands_level": {
+            "含义": "地块等级",
+            "值": "4"
+          }
+        }
+      ]
+    },
+    "operation_limits": {
+      "含义": "操作限制数组",
+      "值": [
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10001"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "120"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10003"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "100"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "100"
+          },
+          "day_share_id": {
+            "含义": "分享ID",
+            "值": "10003"
+          },
+          "day_exp_times": {
+            "含义": "今日经验次数",
+            "值": "100"
+          },
+          "day_exp_share_id": {
+            "含义": "经验分享ID",
+            "值": "10003"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10005"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "133"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          },
+          "day_exp_times": {
+            "含义": "今日经验次数",
+            "值": "150"
+          },
+          "day_exp_share_id": {
+            "含义": "经验分享ID",
+            "值": "10005"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10008"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "230"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10009"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "96"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          },
+          "day_exp_times": {
+            "含义": "今日经验次数",
+            "值": "96"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10010"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "16"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10012"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10002"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "96"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          },
+          "day_exp_times": {
+            "含义": "今日经验次数",
+            "值": "96"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10004"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "20"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "100"
+          },
+          "day_share_id": {
+            "含义": "分享ID",
+            "值": "10003"
+          },
+          "day_exp_times": {
+            "含义": "今日经验次数",
+            "值": "20"
+          },
+          "day_exp_share_id": {
+            "含义": "经验分享ID",
+            "值": "10003"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10006"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "194"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          },
+          "day_exp_times": {
+            "含义": "今日经验次数",
+            "值": "65"
+          },
+          "day_exp_share_id": {
+            "含义": "经验分享ID",
+            "值": "10005"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10007"
+          },
+          "day_times": {
+            "含义": "今日操作次数",
+            "值": "66"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          },
+          "day_exp_times": {
+            "含义": "今日经验次数",
+            "值": "31"
+          },
+          "day_exp_share_id": {
+            "含义": "经验分享ID",
+            "值": "10005"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10011"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10013"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          }
+        },
+        {
+          "id": {
+            "含义": "操作ID",
+            "值": "10014"
+          },
+          "day_times_lt": {
+            "含义": "每日操作上限",
+            "值": "999999999"
+          }
+        }
+      ]
+    }
+  }
+}

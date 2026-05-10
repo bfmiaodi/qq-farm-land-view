@@ -1,0 +1,30 @@
+{
+  "ts": "2026-05-10 22:05:09",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0b1jc70w3mSg173ojt2w3hwWNV2jc709&openID=",
+  "direction": "client_to_server",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.userpb.UserService",
+  "method": "BatchClientReportFlow",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.userpb.UserService",
+    "method_name": "BatchClientReportFlow",
+    "message_type": 1,
+    "client_seq": "216",
+    "server_seq": "215"
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0b1jc70w3mSg173ojt2w3hwWNV2jc709&openID=",
+    "direction": "client_to_server",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "CjoKGWdhbWVwYi51c2VycGIuVXNlclNlcnZpY2USFUJhdGNoQ2xpZW50UmVwb3J0RmxvdxgBINgBKNcBEq8Dg6ItiHPnGky46Qi9XPOb2XhHC0y8YTtWoTVrWh90yPUXrOVBYDzTF7Z9as1jljc6ED2pUX2d+NKXeZln861C6v36ywjeH/t8OyeTc64PJt3cZHR6ipPp/lHHHmTYZuWzjxoksqIoE/mh6EnOOvpHVJHI+TkeO7F3IMMNu82QcQfevntFdyRdzPTNMdziVjr9vSh180q//htqlHJ0p8GIexh0s315JoRJ9v0NP83EW6lBl0UZpy7UNxMbuMxTBvXeJej0ApWJYks0AcJQ4rpwe6WsOrucsQc3jINYuOwfuyUW7kZ4DS8od69I0wX1yHA2Y1UhhQho23OWIF8NVOXj91ljStNNilQMOc6/gU1xQR9hrahMQaw6vmxHLG6Cya9CvGMKgaTwYjZ8LO9OXWSLhEdS5uIIDPsBWQBxyNJ0QfTE4LwMv/gs4fQELMrKAXB4Ipq1pOYgi3bFFBFlXalll4YRxqQxliUiSMgZ3sZbRxSXCvlLr5plcIIFiZv+65cVx2XxVGd6Q2g7Fw5HsbkgCFBrjdIvjKCM6PKrEklua8Yy6EiXFZVbvnUDI4u72/oaU1UwVnRCdzdVWjYzVFRNUWJac3JiamJWM2o0dEFSRnh3RHJDNjZYamRoYkNLbHFwaDVrZnhJVmhwZmNkVTNuQWtQSUJqdkFnNFg3VERrUXlqd3I9",
+    "text": ""
+  }
+}
