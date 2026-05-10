@@ -1,0 +1,30 @@
+{
+  "ts": "2026-05-10 22:53:02",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+  "direction": "client_to_server",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.plantpb.PlantService",
+  "method": "WaterLand",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.plantpb.PlantService",
+    "method_name": "WaterLand",
+    "message_type": 1,
+    "client_seq": "140",
+    "server_seq": "139"
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+    "direction": "client_to_server",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "CjAKG2dhbWVwYi5wbGFudHBiLlBsYW50U2VydmljZRIJV2F0ZXJMYW5kGAEgjAEoiwESDYO4x17FmIOg+wZBRDgaV05ZYUlsSUNvd25QM3dmOHNCQzVSUFZDQmNiaTV0aU1YNmtxS0xNbHdDa2x4SVZTdHduT2xMMDAxeGlEQ0E5Vm9ielAxVkgxbmpIQjAzdG5Wakw1THNGPQ==",
+    "text": ""
+  }
+}

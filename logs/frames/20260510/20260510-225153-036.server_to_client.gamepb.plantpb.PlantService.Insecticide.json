@@ -1,0 +1,33 @@
+{
+  "ts": "2026-05-10 22:51:53",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.plantpb.PlantService",
+  "method": "Insecticide",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.plantpb.PlantService",
+    "method_name": "Insecticide",
+    "message_type": 2,
+    "client_seq": "103",
+    "server_seq": "103",
+    "metadata": {
+      "x-traceid": "Mjk1MTVjODY0NWJlOTRmZGFkY2ExODk2NWViNGE4ZmE="
+    }
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "Cl8KG2dhbWVwYi5wbGFudHBiLlBsYW50U2VydmljZRILSW5zZWN0aWNpZGUYAiBnKGdCLQoJeC10cmFjZWlkEiAyOTUxNWM4NjQ1YmU5NGZkYWRjYTE4OTY1ZWI0YThmYRLLAQqdAQgNEAEYBCAFQhcIARB+GgkI6QcQgJmkigEaBgjtBxD+IUoKCLDqARDQDxjQD1JrCOGiPhIJ5a2U6ZuA6I2JIhAIAhDus4LQBhgVOOHogtAGIgoIBhDu6YLQBhgYKAFQwboCWKAHeICOAoABAZABoAewAaMd0AHBugLYAaAH4AHpB+gBmALwAekH+AGYApICCgjpBxD6ARjhoj6AAQQSEQiWThDPARj/k+vcAyhBOJVOEhIIlU4QjgEY/5Pr3AMolgE4lU4aAggN",
+    "text": ""
+  }
+}

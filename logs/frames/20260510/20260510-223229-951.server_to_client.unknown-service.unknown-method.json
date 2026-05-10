@@ -1,0 +1,26 @@
+{
+  "ts": "2026-05-10 22:32:29",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0b18kd000Vn1mW1iPA200uSgiW38kd09&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "",
+  "method": "",
+  "isTarget": false,
+  "gateMeta": {
+    "message_type": 3
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0b18kd000Vn1mW1iPA200uSgiW38kd09&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "CgIYAxKlAgoaZ2FtZXBiLnBsYW50cGIuTGFuZHNOb3RpZnkShgIK/QEIAhABGAQgBUIWCAEQXRoICOkHEIC7sCEaBgjtBxDYBEoKCLDqARDQDxjQD1LLAQiQoz4SEem7hOmHkcK36buE6YeR5p6cIhAIARDfqoLQBhgBOObZgtAGIiIIAhDf4ILQBhgGOP/9gtAGUhAI3+CC0AYQBSICCAMosLBEIhAIAhDfloPQBhgIQO64g9AGIgoIAhDfzIPQBhgMIgoIAhDfgoTQBhgKIgoIBhDfuITQBhgTKAFQsL8/WCh4gI4CgAEBiAEBkAEoogEBBbABiiDQAfC6AtgBsAjgAekH6AGYAvAB7Qf4AQaCAgOwsESSAgoI6QcQ+gEYkKM+gAEEEMGE+twD",
+    "text": ""
+  }
+}

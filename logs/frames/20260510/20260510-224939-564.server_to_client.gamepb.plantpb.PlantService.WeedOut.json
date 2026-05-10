@@ -1,0 +1,33 @@
+{
+  "ts": "2026-05-10 22:49:39",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.plantpb.PlantService",
+  "method": "WeedOut",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.plantpb.PlantService",
+    "method_name": "WeedOut",
+    "message_type": 2,
+    "client_seq": "46",
+    "server_seq": "46",
+    "metadata": {
+      "x-traceid": "Y2U1M2MxYTkwNDljMjVjMGYyYzE2ZDIzM2MwNjc3MmQ="
+    }
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "ClsKG2dhbWVwYi5wbGFudHBiLlBsYW50U2VydmljZRIHV2VlZE91dBgCIC4oLkItCgl4LXRyYWNlaWQSIGNlNTNjMWE5MDQ5YzI1YzBmMmMxNmQyMzNjMDY3NzJkEqcHCpkBCAQQARgDIAVCDggBED0aCAjpBxDAo4YBSgcIoJwBEOgHUnMI4qI+Eg/lk4jlk4jlsI/ljZfnk5wiCggCEIiqgtAGGBUiCggGEOjmgtAGGAooAVDp/gJYHnjgrwKAAQGQAR6iAQEGsAHoEdABwroC2AGkA+AB6QfoAZgC8AHpB/gByAGCAgOJ5z6SAgoI6QcQyAEY4qI+gAEDCrkBCAUQARgDIAVCDggBED4aCAjpBxDA2J4BSgcIoJwBEOgHUpIBCJCjPhIR6buE6YeRwrfpu4Tph5HmnpwiKAgCEIWqgtAGGAo4iuSC0AZA8tmC0AZSEAiFqoLQBhAFIgIIAyiwsEQiCggGEOXmgtAGGBMoAVCwvz9YHnjgrwKAAQGQAR6iAQEFsAHoEdAB8LoC2AGkA+AB6QfoAZgC8AHtB/gBBoICA7CwRJICCgjpBxDIARiQoz6AAQMKuwEIEhABGAIgBUIOCAEQORoICOkHEMC1+gJKAwiQTlKYAQiQoz4SCem7hOmHkeaenCIKCAIQmPqB0AYYCCIQCAIQ2L2C0AYYDEDb1YLQBiIcCAIQmIGD0AYYCjDzloPQBji1goPQBkDmkIPQBiIKCAYQ2MSD0AYYEygBUPC6AliYAnjA0QKAAQGIAQGQAZgCsAHoEdAB8LoC2AGYAuAB6QfoAZgC8AHpB/gBmAKSAgoI6QcQyAEYkKM+gAECCtkBCBUQARgCIAVCDggBED8aCAjpBxDA1MMDSgMIkE5StgEI5aI+EgnpkojlnqvoirEiCggBEPv0gdAGGAEiEAgCELu4gtAGGAZA7NaC0AYiEAgCEPv7gtAGGAs44ZmD0AYiEAgCELu/g9AGGBI42eGD0AYiFggCEPuChNAGGBUwqMCE0AZAmIaE0AYiCggGELvGhNAGGAooAVDFugJYoAJ4wNECgAEBiAEBkAGgArABwA/QAcW6AtgBoALgAekH6AHwAfAB6Qf4AfABkgIKCOkHEMgBGOWiPoABAgqKAQgXEAEYAiAFQg4IARBDGggI6QcQwL70A0oDCJBOUmgIqKE+EgbmppvlrZAiEAgCEO3kgdAGGAwwtuSC0AYiCggGEO3rgtAGGBMoAVCIuQJYkAN4gKMFgAEBkAGQA7ABpBjQAYi5AtgBkAPgAekH6AGDAvAB6Qf4AYMCkgIKCOkHEMgBGKihPoABAhISCJVOEI4BGP+T69wDKJYBOJVOGgIIBBoCCAUaAggSGgIIFRoCCBc=",
+    "text": ""
+  }
+}

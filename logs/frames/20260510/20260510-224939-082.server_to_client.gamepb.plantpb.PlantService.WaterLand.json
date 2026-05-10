@@ -1,0 +1,33 @@
+{
+  "ts": "2026-05-10 22:49:39",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.plantpb.PlantService",
+  "method": "WaterLand",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.plantpb.PlantService",
+    "method_name": "WaterLand",
+    "message_type": 2,
+    "client_seq": "45",
+    "server_seq": "45",
+    "metadata": {
+      "x-traceid": "Nzk3NmE2OWQ5ZWMxMmQ1NTAyN2EwNDFhZWIzOTI2YWQ="
+    }
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "Cl0KG2dhbWVwYi5wbGFudHBiLlBsYW50U2VydmljZRIJV2F0ZXJMYW5kGAIgLSgtQi0KCXgtdHJhY2VpZBIgNzk3NmE2OWQ5ZWMxMmQ1NTAyN2EwNDFhZWIzOTI2YWQSlAYKpQEIARABGAQgBUIWCAEQWhoICOkHEIDh6xcaBgjtBxD0A0oKCLDqARDQDxjQD1J0CJCjPhIR6buE6YeRwrfpu4Tph5HmnpwiCggCEOaVgtAGGAoiCggGEObLgtAGGBMoAVCwvz9YKHiAjgKAAQGQASiiAQEFsAGnFdAB8LoC2AGwBOAB6QfoAZgC8AHtB/gBBoICA7CwRJICCgjpBxDIARiQoz6AAQQKjwEICRABGAMgBUIOCAEQQhoICOkHEMCWsQJKBwignAEQ6AdSZQiQoz4SCem7hOmHkeaenCIKCAIQhaqC0AYYCiIKCAYQ5eaC0AYYEygBUPC6AlikA3jgrwKAAQGQAaQDsAHoEdAB8LoC2AGkA+AB6QfoAZgC8AHpB/gBmAKSAgoI6QcQyAEYkKM+WAFgAYABAwrCAQgREAEYAiAFQg4IARA4GggI6QcQwIDiAkoDCJBOUp8BCJCjPhIX6buE6YeRwrflk4jlk4jlsI/ljZfnk5wiCggCEOX6gdAGGAwiHAgCEKW+gtAGGApSEAilvoLQBhAFIgIIAyip9EQiCggGEOWBg9AGGBMoAVCpg0BYFGoBAHjA0QKAAQGQARSiAQIGBbAB6BHQAfC6AtgBmALgAekH6AGYAvAB7Qf4AQaCAgaJ5z6p9ESSAgoI6QcQyAEYkKM+gAECCtwBCBUQARgCIAVCDggBED8aCAjpBxDA1MMDSgMIkE5SuQEI5aI+EgnpkojlnqvoirEiCggBEPv0gdAGGAEiEAgCELu4gtAGGAZA7NaC0AYiEAgCEPv7gtAGGAs44ZmD0AYiEAgCELu/g9AGGBI42eGD0AYiFggCEPuChNAGGBUwqMCE0AZAmIaE0AYiCggGELvGhNAGGAooAVDFugJYoAJiAQB4wNECgAEBiAEBkAGgArABwA/QAcW6AtgBoALgAekH6AHwAfAB6Qf4AfABkgIKCOkHEMgBGOWiPoABAhIQCJdOEEoY/5Pr3AMoHziVThISCJVOEIkBGP+T69wDKJYBOJVOGgIIARoCCAkaAggRGgIIFQ==",
+    "text": ""
+  }
+}

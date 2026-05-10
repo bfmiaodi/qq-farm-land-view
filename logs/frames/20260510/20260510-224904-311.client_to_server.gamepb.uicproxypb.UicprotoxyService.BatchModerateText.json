@@ -1,0 +1,30 @@
+{
+  "ts": "2026-05-10 22:49:04",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+  "direction": "client_to_server",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.uicproxypb.UicprotoxyService",
+  "method": "BatchModerateText",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.uicproxypb.UicprotoxyService",
+    "method_name": "BatchModerateText",
+    "message_type": 1,
+    "client_seq": "27",
+    "server_seq": "26"
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+    "direction": "client_to_server",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "Cj4KI2dhbWVwYi51aWNwcm94eXBiLlVpY3Byb3RveHlTZXJ2aWNlEhFCYXRjaE1vZGVyYXRlVGV4dBgBIBsoGhKgBYNuR+gr/ysgK0b/T3dIM9x9r9reZGuq3VEbCDoI6LMtauisXHl0t8e4SMO8AS1FrJresfG3VaWfaYfraE7O4jCSnpSj2P47lzmSFGhDY3TwDnFAQUyYFqkKCGYBRHJWPopDYIhkvNmobV8ReasyHf6ng9/09QxDimRRNkLpV8Jm6ijoy3X/qGtzP6YFb+n5A9DM3YFwQE7b+F7KmK0NZL7KRPscVmaJqP2XKRvSukyUlpkbGOaMTjfCkMypZzn1UULk+ntVMkv0bbOEwr4a5IQT8vF5YhHcxa1AaK65D8wkc8C02HSr/rfQslR6Gog/C/FOtxQXJ1dCnfaXicYSf0lIOxNzOPDLWVPycZ4+yfNeq/I86fBdh7tJBpg+6MCHCSHhXTzZyTDyJjoSmvANtOjJCWEoEoREVj73kFUTi5xRljPz88L3aHcYvvpafaaj4fMM9Ta6VP8A23npGizDjMR36STRwRIwZk6/gn5GOZKvXiNiXY1899ZKyvbHTNBK42UyUaA46fKnbjwKANCjpWuQse4f0rSNa3XC1EDXtsVLW/NSRcy9NUwanv1gsa3Q9Z+u8QbgPZeLnOEJ7eNJ84TYf3b51bYZuSSVwsG8SrMUri9MXGZPb26ryaLK+hY3X5/HJ0+ng/8bd9ndiUe/tptVLNerxYntfM+DvcrvQDqlHUOidnXs7n4KA2mBV1GD6v3c6vXxzGe9lXbRvJx48JSDMtr4ZaKGd5wI8DJX4a6biJzdxGI3N1kkg4dYk00R1oZxFcTh7WCYsONQWg8G1HogJP/ij3u12NZI/+r1GJpTNYu0bQbs29hbsSj3YgR/zVTHqH5R4Ddy1QgCbD6UoqPwQY+1K+C/d93f7PYPzKtQvJFC0Akll5+CXi6HDSIsqhp6VEVlUjJEODFqUmQxajJBdEpmYklGcWRiV3JBeU9ocFhJQk1zUGRnMlNLWWhGVTVXSk5RUDVPRlpjTUNyaGFiVzBWd25CRUg2QW1GeWRSWFJUZ3Vkc1ZObnBsQVR0UldEdmJieTI5SHFVdEs0c0lDb1U0WldaS2RxWT0=",
+    "text": ""
+  }
+}

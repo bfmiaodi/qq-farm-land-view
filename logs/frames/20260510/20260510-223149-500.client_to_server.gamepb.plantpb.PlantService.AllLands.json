@@ -1,0 +1,41 @@
+{
+  "ts": "2026-05-10 22:31:49",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0b18kd000Vn1mW1iPA200uSgiW38kd09&openID=",
+  "direction": "client_to_server",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.plantpb.PlantService",
+  "method": "AllLands",
+  "isTarget": true,
+  "gateMeta": {
+    "service_name": "gamepb.plantpb.PlantService",
+    "method_name": "AllLands",
+    "message_type": 1,
+    "client_seq": "92",
+    "server_seq": "0"
+  },
+  "summary": {
+    "total": 0,
+    "unlocked": 0,
+    "locked": 0,
+    "empty": 0,
+    "growing": 0,
+    "harvestable": 0,
+    "dead": 0,
+    "needWater": 0,
+    "needWeed": 0,
+    "needBug": 0
+  },
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0b18kd000Vn1mW1iPA200uSgiW38kd09&openID=",
+    "direction": "client_to_server",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "Ci0KG2dhbWVwYi5wbGFudHBiLlBsYW50U2VydmljZRIIQWxsTGFuZHMYASBcKAASABp7Y2dxbGExWEM5NzZuWmx6amlFSTE5d1UycUJ3Q2pjdEV1ZWZSQ1hQNUc0N1BVMGdYdW90dG1ONHAzVFlLUkZwQTduR0FuQ2xRb3VIaVZkOEVyN0o5UmdlSGhNdGdsajd1ZUdVSzdSNnN4T0dCdE1JZ3hKT0NqRHh4a1Y9",
+    "text": ""
+  }
+}

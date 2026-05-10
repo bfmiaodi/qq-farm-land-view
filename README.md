@@ -43,18 +43,43 @@ pip install mitmproxy
 
 ## 启动
 
-先启动本地服务：
+现在默认只需要一条命令：
 
 ```bash
 cd /Users/hqh/Desktop/03-study/scripts
-node src/reqable-log-server.js
+npm start
 ```
 
-再启动 `mitmdump`：
+这条命令会同时拉起：
+
+- 本地 Node 服务
+- `mitmdump`
+
+附带命令：
 
 ```bash
-cd /Users/hqh/Desktop/03-study/scripts
+npm run stop
+npm run restart
+```
+
+默认启动参数等价于：
+
+```bash
+node src/reqable-log-server.js
 mitmdump --mode socks5 -p 8080 --ssl-insecure --set connection_strategy=lazy -s src/mitmproxy-qqfarm-addon.py
+```
+
+启动前会自动检查这两个端口是否已被占用：
+
+- `18088`
+- `8080`
+
+如果端口被占用，会直接报错并拒绝启动，避免半启动状态。
+
+如果你只想单独跑本地服务，仍然可以：
+
+```bash
+node src/reqable-log-server.js
 ```
 
 如果你的客户端不是 `SOCKS5`，而是普通 `HTTP/HTTPS` 代理，则不要用 `--mode socks5`。
@@ -274,4 +299,3 @@ logs/frames/20260510/
 2. 继续补齐小号 `mutantConfigId` 映射
 3. 抓资源 manifest，研究 CDN 批量下载
 4. 如果确实需要，把截图页做成更完整的海报风格
-

@@ -1,0 +1,33 @@
+{
+  "ts": "2026-05-10 22:49:39",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.plantpb.PlantService",
+  "method": "Insecticide",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.plantpb.PlantService",
+    "method_name": "Insecticide",
+    "message_type": 2,
+    "client_seq": "47",
+    "server_seq": "47",
+    "metadata": {
+      "x-traceid": "NzRjMjFmZWU3NDNhOTZjMGQwZjUwN2NkMmRjMDQyOWE="
+    }
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "Cl8KG2dhbWVwYi5wbGFudHBiLlBsYW50U2VydmljZRILSW5zZWN0aWNpZGUYAiAvKC9CLQoJeC10cmFjZWlkEiA3NGMyMWZlZTc0M2E5NmMwZDBmNTA3Y2QyZGMwNDI5YRKoBQqLAQgKEAEYAyAFQg4IARBDGggI6QcQwIDiAkoHCKCcARDoB1JlCJCjPhIJ6buE6YeR5p6cIgoIAhCGqoLQBhgKIgoIBhDm5oLQBhgTKAFQ8LoCWKQDeOCvAoABAZABpAOwAegR0AHwugLYAaQD4AHpB+gBmALwAekH+AGYApICCgjpBxDIARiQoz6AAQMKlwEIDhABGAMgBUIOCAEQRxoICOkHEMCopQRKBwignAEQ6AdScQiQoz4SCem7hOmHkeaenCIWCAIQhqqC0AYYCjj92ILQBkDuwoLQBiIKCAYQ5uaC0AYYEygBUPC6AlikA3jgrwKAAQGQAaQDsAHoEdAB8LoC2AGkA+AB6QfoAZgC8AHpB/gBmAKSAgoI6QcQyAEYkKM+gAEDCr8BCBEQARgCIAVCDggBEDgaCAjpBxDAgOICSgMIkE5SnAEIkKM+Ehfpu4Tph5HCt+WTiOWTiOWwj+WNl+eTnCIKCAIQ5fqB0AYYDCIcCAIQpb6C0AYYClIQCKW+gtAGEAUiAggDKKn0RCIKCAYQ5YGD0AYYEygBUKmDQFgUeMDRAoABAZABFKIBAgYFsAHoEdAB8LoC2AGYAuAB6QfoAZgC8AHtB/gBBoICBonnPqn0RJICCgjpBxDIARiQoz6AAQIKhAEIFhABGAIgBUIOCAEQQRoICOkHEMCJ3ANKAwiQTlJiCKihPhIG5qab5a2QIgoIAhDt5IHQBhgMIgoIBhDt64LQBhgTKAFQiLkCWJADeICjBYABAZABkAOwAaQY0AGIuQLYAZAD4AHpB+gBgwLwAekH+AGDApICCgjpBxDIARiooT6AAQISEQiWThDOARj/k+vcAyhBOJVOEhIIlU4QjgEY/5Pr3AMolgE4lU4aAggKGgIIDhoCCBEaAggW",
+    "text": ""
+  }
+}

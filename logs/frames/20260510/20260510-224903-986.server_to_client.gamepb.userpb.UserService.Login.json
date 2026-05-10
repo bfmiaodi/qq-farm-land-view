@@ -1,0 +1,33 @@
+{
+  "ts": "2026-05-10 22:49:03",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.userpb.UserService",
+  "method": "Login",
+  "isTarget": false,
+  "gateMeta": {
+    "service_name": "gamepb.userpb.UserService",
+    "method_name": "Login",
+    "message_type": 2,
+    "client_seq": "1",
+    "server_seq": "1",
+    "metadata": {
+      "x-traceid": "MmQ4OGRkNzU5MDE2NWNmY2Q0ZDk0Zjk4Mzk4ODYxN2E="
+    }
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "ClcKGWdhbWVwYi51c2VycGIuVXNlclNlcnZpY2USBUxvZ2luGAIgASgBQi0KCXgtdHJhY2VpZBIgMmQ4OGRkNzU5MDE2NWNmY2Q0ZDk0Zjk4Mzk4ODYxN2ES4wgK9QEIwYT63AMSAmxvGFgg4tqvBCiAr583MhxvTDYxTXZuUzZiNWYtVHlnUVdxNFY0Uy00TnUwOqkBaHR0cHM6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi9QaWFqeFNxQlJhRUsyOXBCVHRiR2E1RzdQcFM0M3NjaWJMa2RMOGF4Z0RYdlloVFQwMWJrSjlIZU9DbWpCTWlhNUNpYmlibjJMMmVpY1lwaWNIUVoxTW5YNGczeUdFSmxTQXBnNnJaaG9MNnA2cmVTSElxTTJpYmVpY0JVeXJBLzEzMloHCK0CEAEgBmIICAESBAgBEAFoAhKJBQoyCPkHEJQXMIIjogYmGh0KD+a0u+WKqOe7k+adn+WQjhIKMjAyNjAzMDIwMioFCOkHEGQKGgi5nAEQDjDrDaIGDgjoBxDpByIGCOkHEOgHChoIzpwBEAkw9g2iBg4I4F0Q6QciBgjpBxDgXQoaCI2dARAwMPQRogYOCOgHEOkHIgYI6QcQ6AcKGgiQnQEQNDD0DaIGDgjoBxDpByIGCOkHEOgHChsI2J0BEIYBMNwkogYOCOgHEOkHIgYI6QcQ6AcKGgjhnQEQczCRJaIGDgjoBxDpByIGCOkHEOgHChoIgJ4BEAkwphKiBg4I0A8Q6QciBgjpBxDQDwoaCJmeARANMOcNogYOCNAPEOkHIgYI6QcQ0A8KGgigngEQfjCQJaIGDgjoBxDpByIGCOkHEOgHChoIoZ4BEBYwqSqiBg4I0A8Q6QciBgjpBxDQDwoaCKKeARAOMLYqogYOCNAPEOkHIgYI6QcQ0A8KGgilngEQIDCoKqIGDgjoBxDpByIGCOkHEOgHChoIwJ8BEAIwxSuiBg4I4F0Q6QciBgjpBxDgXQobCI+lARDeATDdFqIGDgjoBxDpByIGCOkHEOgHCgwIgfEEEB8w7iqiBgAKDgiC8QQQBDCqKzgBogYACg4Ig/EEEAEwqSs4AaIGAAoOCIvxBBAFMIorOAGiBgAKDAiUvwUQATCuHqIGAAoOCKONBhAFMMQrOAGiBgAKDgjnlwYQCjCrKjgBogYACgkIuhcQ0AqiBgAKCQi5FxDaD6IGAAoLCOkHEICvnzeiBgAKCQjqBxC0B6IGAAoKCPQHELqvEaIGAAoKCPMHEIrjLqIGAAoKCO0HENGMAqIGAAoLCM0IEOLarwSiBgAY2/XzkuEzKj0IoQYSBAhkEAESBAhlEAESDAhmEAMaBgiB8QQQBRIMCGcQAxoGCIHxBBAFEgQIaBABEgQIaRACEgQIahABMiUKCTc3NTAxNjQ1MRIYUVHnu4/lhbjlhpzlnLrlrpjmlrnnvqQxOgYI2g8Q0ApCAghuQgIIaUICCGxCAghrQgIIaEICCG9CAghxShwSBzAuMi4wLjAaBzAuMS4wLjAiCDIwMjYwNTA4UgBiAggBYgIIAmICCANiAggEYgIIBWIUCAYQoO/KzwYY/6nc0AYg+oiLxgdiAggH",
+    "text": ""
+  }
+}
