@@ -60,6 +60,7 @@ npm start
 ```bash
 npm run stop
 npm run restart
+npm run status
 ```
 
 默认启动参数等价于：

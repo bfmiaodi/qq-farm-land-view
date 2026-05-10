@@ -5,6 +5,10 @@ const path = require('node:path');
 const express = require('express');
 const { Resvg } = require('@resvg/resvg-js');
 const {
+    readPidInfo,
+    isPidAlive,
+} = require('./process-manager');
+const {
     loadProto,
     loadGameConfig,
     decodeLands,
@@ -132,8 +136,56 @@ function toPublicAssetUrl(assetPath) {
     return normalized;
 }
 
+function toAbsoluteAssetPath(assetPath) {
+    const normalized = String(assetPath || '').trim().replace(/\\/g, '/');
+    if (!normalized) return '';
+    if (normalized.startsWith('./')) {
+        return path.join(PROJECT_ROOT, normalized.slice(2));
+    }
+    if (normalized.startsWith('/')) {
+        return normalized;
+    }
+    return path.join(PROJECT_ROOT, normalized);
+}
+
+function getImageMimeType(file) {
+    const ext = path.extname(String(file || '')).toLowerCase();
+    if (ext === '.png') return 'image/png';
+    if (ext === '.jpg' || ext === '.jpeg') return 'image/jpeg';
+    if (ext === '.webp') return 'image/webp';
+    if (ext === '.gif') return 'image/gif';
+    return 'application/octet-stream';
+}
+
+function getInlineImageDataUri(assetPath) {
+    const abs = toAbsoluteAssetPath(assetPath);
+    if (!abs || !fs.existsSync(abs)) return '';
+    const mime = getImageMimeType(abs);
+    const base64 = fs.readFileSync(abs).toString('base64');
+    return `data:${mime};base64,${base64}`;
+}
+
 function cloneState() {
     return JSON.parse(JSON.stringify(runtimeState));
+}
+
+function getUiRuntimeStatus() {
+    const pidInfo = readPidInfo();
+    const proxyRunning = !!(pidInfo && pidInfo.mitmPid && isPidAlive(pidInfo.mitmPid));
+    const serverRunning = true;
+    const lastCaptureAt = runtimeState.updatedAt || '';
+    const hasFriendData = !!(
+        runtimeState.currentVisit
+        && runtimeState.currentVisit.friend
+        && (runtimeState.currentVisit.friend.name || runtimeState.currentVisit.friend.remark || runtimeState.currentVisit.friend.gid)
+    );
+
+    return {
+        proxyRunning,
+        serverRunning,
+        lastCaptureAt,
+        hasFriendData,
+    };
 }
 
 function decodeBodyToString(body) {
@@ -427,6 +479,7 @@ function renderMonitorPage(state) {
     const friendList = s.friendList || {};
     const visit = s.currentVisit || {};
     const history = Array.isArray(s.history) ? s.history : [];
+    const runtimeStatus = getUiRuntimeStatus();
 
     const farmLands = Array.isArray(farm.lands) ? farm.lands.slice(0, 24) : [];
     const friends = Array.isArray(friendList.friends) ? friendList.friends : [];
@@ -434,6 +487,7 @@ function renderMonitorPage(state) {
 
     const renderJson = (value) => safeJson(value).replace(/[<>&]/g, (ch) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[ch]));
     const renderSummaryCard = (label, value, tone = '') => `<div class="stat ${tone}"><div class="stat-value">${value ?? '-'}</div><div class="stat-label">${label}</div></div>`;
+    const renderRuntimePill = (label, value, ok) => `<div class="runtime-pill ${ok ? 'runtime-pill-ok' : 'runtime-pill-off'}"><span>${label}</span><strong>${value}</strong></div>`;
     const statusLabelMap = {
         locked: '未解锁',
         empty: '空地',
@@ -600,6 +654,43 @@ function renderMonitorPage(state) {
     .hero { padding: 20px; margin-bottom: 16px; }
     .hero h1 { margin: 0 0 8px; font-size: 32px; }
     .hero p { margin: 6px 0; color: var(--muted); }
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .hero-status {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      min-width: min(100%, 420px);
+    }
+    .runtime-pill {
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid #e4d5bf;
+      background: rgba(255,255,255,0.72);
+    }
+    .runtime-pill span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .runtime-pill strong {
+      font-size: 15px;
+      color: var(--text);
+    }
+    .runtime-pill-ok {
+      background: #edf9f1;
+      border-color: #b9e2c6;
+    }
+    .runtime-pill-off {
+      background: #fff3ef;
+      border-color: #efc7bb;
+    }
     .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
     .panel { padding: 16px; overflow: hidden; }
     .panel h2 { margin: 0 0 12px; font-size: 18px; }
@@ -750,6 +841,7 @@ function renderMonitorPage(state) {
       .land-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (max-width: 980px) {
+      .hero-status { grid-template-columns: 1fr; min-width: 100%; }
       .land-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 640px) {
@@ -763,10 +855,20 @@ function renderMonitorPage(state) {
 <body>
   <div class="wrap">
     <section class="hero">
-      <h1>QQ Farm WSS Monitor</h1>
-      <p><span class="pill">目标 WSS</span>${TARGET_WS_URL}</p>
-      <p><span class="pill">最近更新时间</span>${s.updatedAt || '-'}</p>
-      <p><span class="pill">最近帧</span>${s.lastFrame ? `${s.lastFrame.service}.${s.lastFrame.method} / ${s.lastFrame.direction}` : '-'}</p>
+      <div class="hero-top">
+        <div>
+          <h1>QQ Farm WSS Monitor</h1>
+          <p><span class="pill">目标 WSS</span>${TARGET_WS_URL}</p>
+          <p><span class="pill">最近更新时间</span>${s.updatedAt || '-'}</p>
+          <p><span class="pill">最近帧</span>${s.lastFrame ? `${s.lastFrame.service}.${s.lastFrame.method} / ${s.lastFrame.direction}` : '-'}</p>
+        </div>
+        <div class="hero-status">
+          ${renderRuntimePill('代理状态', runtimeStatus.proxyRunning ? '已启动' : '未启动', runtimeStatus.proxyRunning)}
+          ${renderRuntimePill('本地服务', runtimeStatus.serverRunning ? '正常' : '异常', runtimeStatus.serverRunning)}
+          ${renderRuntimePill('最近抓包时间', runtimeStatus.lastCaptureAt || '暂无', !!runtimeStatus.lastCaptureAt)}
+          ${renderRuntimePill('当前好友数据', runtimeStatus.hasFriendData ? '存在' : '暂无', runtimeStatus.hasFriendData)}
+        </div>
+      </div>
     </section>
     <section class="grid">
       <section class="panel">
@@ -861,7 +963,7 @@ function buildShareSvg(title, subtitle, lands, meta = {}) {
     const list = Array.isArray(lands) ? lands : [];
     const cols = 4;
     const cardWidth = 268;
-    const cardHeight = 132;
+    const cardHeight = 144;
     const gapX = 16;
     const gapY = 16;
     const width = 1200;
@@ -900,6 +1002,10 @@ function buildShareSvg(title, subtitle, lands, meta = {}) {
         `<text x="48" y="${146 + index * 26}" font-size="22" fill="#8a735a">${escapeXml(line)}</text>`
     ).join('\n');
     const summaryY = 146 + headerLines.length * 26;
+    const truncateText = (value, maxChars) => {
+        const text = String(value || '');
+        return text.length > maxChars ? `${text.slice(0, Math.max(0, maxChars - 1))}…` : text;
+    };
 
     const getShareCardStyle = (land) => {
         const mutantIds = Array.isArray(land && land.mutantConfigIds) ? land.mutantConfigIds.map(v => Number(v) || 0) : [];
@@ -952,6 +1058,7 @@ function buildShareSvg(title, subtitle, lands, meta = {}) {
         const y = top + row * (cardHeight + gapY);
         const mutantLabels = getMutantLabelsForShare(land);
         const style = getShareCardStyle(land);
+        const imageDataUri = land.seedImage ? getInlineImageDataUri(land.seedImage) : '';
         const tags = [];
         if (land.needWater) tags.push({ text: '缺水', fill: '#e8f2ff', color: '#1f5ea8' });
         if (land.needWeed) tags.push({ text: '长草', fill: '#fff2d8', color: '#9a5b00' });
@@ -965,28 +1072,36 @@ function buildShareSvg(title, subtitle, lands, meta = {}) {
                 tags.push({ text: label, fill: '#ffe7f3', color: '#b83280' });
             }
         }
-        const line1 = `#${land.id} ${land.plantName || '空地'}`;
-        const line2 = `${statusMap[land.status] || land.status || '-'} / ${phaseMap[land.phaseName] || land.phaseName || '-'} · 成熟 ${land.matureInText || '-'}`;
-        const line3 = mutantLabels.length ? mutantLabels.join(' / ') : '无';
+        const line1 = truncateText(`#${land.id} ${land.plantName || '空地'}`, 11);
+        const line2 = truncateText(`${statusMap[land.status] || land.status || '-'} / ${phaseMap[land.phaseName] || land.phaseName || '-'} · 成熟 ${land.matureInText || '-'}`, 23);
+        const line3 = truncateText(mutantLabels.length ? mutantLabels.join(' / ') : '无', 12);
         let pillX = 16;
-        const pillsSvg = tags.map((tag) => {
-            const width = Math.max(48, 18 + String(tag.text).length * 18);
+        const pillsSvg = tags.slice(0, 3).map((tag) => {
+            const width = Math.max(48, 18 + String(tag.text).length * 16);
             const pill = `
-    <g transform="translate(${pillX}, 64)">
+    <g transform="translate(${pillX}, 72)">
       <rect x="0" y="0" width="${width}" height="28" rx="14" fill="${tag.fill}"/>
       <text x="${width / 2}" y="20" font-size="13" font-weight="700" text-anchor="middle" fill="${tag.color}">${escapeXml(tag.text)}</text>
     </g>`;
             pillX += width + 10;
             return pill;
         }).join('');
+        const imageSvg = imageDataUri
+            ? `
+    <rect x="16" y="14" width="56" height="56" rx="14" fill="rgba(255,255,255,0.88)" stroke="rgba(122,98,75,0.12)"/>
+    <image x="22" y="20" width="44" height="44" href="${imageDataUri}" preserveAspectRatio="xMidYMid meet"/>`
+            : `
+    <rect x="16" y="14" width="56" height="56" rx="14" fill="rgba(255,255,255,0.88)" stroke="rgba(122,98,75,0.12)"/>
+    <text x="44" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#7a6750">${escapeXml((land.plantName || '?').slice(0, 2))}</text>`;
         return `
   <g transform="translate(${x}, ${y})">
     <rect x="0" y="0" width="${cardWidth}" height="${cardHeight}" rx="22" fill="${style.fill}" stroke="${style.stroke}" stroke-width="1.5"/>
-    <rect x="14" y="92" width="${cardWidth - 28}" height="28" rx="14" fill="rgba(255,255,255,0.72)" stroke="rgba(122,98,75,0.16)" stroke-dasharray="4 4"/>
-    <text x="16" y="28" font-size="20" font-weight="700" fill="#2f261c">${escapeXml(line1)}</text>
-    <text x="16" y="50" font-size="14" fill="#6d5c45">${escapeXml(line2)}</text>
+    <rect x="14" y="104" width="${cardWidth - 28}" height="28" rx="14" fill="rgba(255,255,255,0.76)" stroke="rgba(122,98,75,0.16)" stroke-dasharray="4 4"/>
+    ${imageSvg}
+    <text x="84" y="30" font-size="18" font-weight="700" fill="#2f261c">${escapeXml(line1)}</text>
+    <text x="84" y="52" font-size="13" fill="#6d5c45">${escapeXml(line2)}</text>
     ${pillsSvg}
-    <text x="16" y="112" font-size="17" font-weight="800" fill="${style.mutantColor}">${escapeXml(line3)}</text>
+    <text x="16" y="124" font-size="17" font-weight="800" fill="${style.mutantColor}">${escapeXml(line3)}</text>
   </g>`;
     }).join('\n');
 

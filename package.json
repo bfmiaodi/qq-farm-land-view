@@ -12,6 +12,7 @@
     "start": "node ./src/start.js",
     "stop": "node ./src/stop.js",
     "restart": "npm run stop && npm run start",
+    "status": "node ./src/status.js",
     "decode": "node ./src/index.js",
     "decode:raw": "node ./src/index.js ./data.bin --raw-json",
     "decode:pretty": "node ./src/index.js ./data.bin --pretty-json",

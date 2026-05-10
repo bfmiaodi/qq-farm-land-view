@@ -1,0 +1,37 @@
+{
+  "ts": "2026-05-10 22:56:57",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+  "direction": "server_to_client",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.friendpb.FriendService",
+  "method": "GetGameFriends",
+  "isTarget": true,
+  "gateMeta": {
+    "service_name": "gamepb.friendpb.FriendService",
+    "method_name": "GetGameFriends",
+    "message_type": 2,
+    "client_seq": "205",
+    "server_seq": "205",
+    "metadata": {
+      "x-traceid": "YjhlZTRjNWU5ZGM0NjM3NzE5OWFkYTY5YjA3YjdlMDA="
+    }
+  },
+  "summary": {
+    "total": 9,
+    "stealableFriends": 0,
+    "needHelpFriends": 1
+  },
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0e1bsGll2uzrHh4RIIkl25yjV94bsGl2&openID=",
+    "direction": "server_to_client",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "CmYKHWdhbWVwYi5mcmllbmRwYi5GcmllbmRTZXJ2aWNlEg5HZXRHYW1lRnJpZW5kcxgCIM0BKM0BQi0KCXgtdHJhY2VpZBIgYjhlZTRjNWU5ZGM0NjM3NzE5OWFkYTY5YjA3YjdlMDAShxIKnAIIqvrDwgQSHG9MNjFNdnVtdHpWbnBkY19LTXB5cXN5Y0dHNUEaGeaChOaChOWBt+iPnOS4jeivtOivnfCfmYoiqQFodHRwczovL3RoaXJkd3gucWxvZ28uY24vbW1vcGVuL3ZpXzMyL1BpYWp4U3FCUmFFS0d2clpYUFVDUk9oQjNReTMxTGlielhqTTRkSEdMSVZqbGljSHdsNnIzc2hoWnpZazlEN0V6b1pXaDFHRUZLcFZFV3FIbmVMUEtDdmliSHdaaWJ6Z05PaWN6NGdYTUlCYWdnM2lhTURpY3JoRXpzaWNHTVEvMTMyMEA4z9q1AUIASg4IoeGC0AYYh7+C0AZIAVACYgYIrAwQ+ApqBwj1AxABIApwru/UAQr9AQijwOvCBBIcb0w2MU12bE1CV014RVpmVGxpZjdydUVna05nYxoCa2singFodHRwczovL3RoaXJkd3gucWxvZ28uY24vbW1vcGVuL3ZpXzMyL1k1dFhMZnN1MFZjbE9ieW9ZdVluREdvcGliWVlVaWFkend1bldKMWNJTWljRlZFREVmTmU4SFlHbDVuNERlaWM2RDhyc0ZJaWM2MjZkUmNVODVpY1lsM2lhZ2lhQlBXdkNlMEFaUVV5eU1waWNFT1hZTHk0LzEzMjA/OPuyHkIAShII7L+C0AYQmcGC0AYY5r2C0AZQAmIGCKIMEPALagcIrQIQASAGcMOP0wEK9gEIm/WbxAQSHG9MNjFNdnBxcm9jVk50SHRnNl9VaTFrcGViS0UaBPCfjbsilwFodHRwczovL3RoaXJkd3gucWxvZ28uY24vbW1vcGVuL3ZpXzMyL3BaNXAzUm5kbXdwTWU4QzdLcmFUc1h3TFQxM1JWdlo2T0pkNmpPbFdsNVBBekI4TjN6T1ZYSmhmalZRV1FZdTEyWUZua0lORVZlcW0yWFQwRVM1YmliNm5TM0MxeHhWMmMxWllpY3ZiNEtvZmMvMTMyMD845cmpAkIAShIIocSC0AYQxMGC0AYYs7qC0AZQAmIGCPYJEPAGcJ/dzgGCAQMI0Q8KkAII4qz2rAQSHG9MNjFNdnEtdVdGYTJSaW9hVzk2Ym1xTGtnNk0aBuaIt+W3nSKnAWh0dHBzOi8vdGhpcmR3eC5xbG9nby5jbi9tbW9wZW4vdmlfMzIvUGlhanhTcUJSYUVMNVh6ZlIwMVB1ME13dnJqTE5pY0hjMHFrMEZZdUs0ZjJGb1p6VE9oTXFaNWQzV0hzMGQ2bFlDZzFRSDlXYUhsRFBHYkV4aWJENWozMlAwZW5OU3dpY2ZqZUxTUUdLVFRZVGljeWIyd2ljaWJrM0QxQ2cvMTMyMD448f1ZQgBKEgiDvILQBhDOxILQBhixxYLQBlACYgYI2AkQuAhqBwi4AhABIAlwzYLDAYIBAwjRDwr/AQj05rXCBBIcb0w2MU12aVV6YVhrYzhYR3N3M2lQbW8wWHFQSRoG5aSP5aSpIpsBaHR0cHM6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi9WaWFxamtielBvMzNzQVVSSlk1YXpqQTZ1OGljRzFpYlgwR1JUbzhVRlVld0pWVFZpY3B4SUgzeGVpYzF6b1dtemJ6YnR4NE5PcjdQeng0cU9NblhkeGljSXZmTDdkeHlNZUZiNjhjRWdjeHpkRXlXWS8xMzIwPDis18YCQgBKEgjCu4LQBhDZ1YLQBhjluYLQBlACYgYIzgkQ8AZqBwjLARABIAdwy8uxAQr9AQjpxtLFBBIcb0w2MU12bVZScUpWMXpkbG54RHJsM3l3Q0NYNBoS5aWU6LeR55qE5bCP5LyB6bmFIpcBaHR0cHM6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi95ZWZoY0RMTzA3ZkQyWUxCaWJwYUtFREFXd0JmOWM4UWhlalR0TkpmaWNtYjZydWxrTXIwd01lYXVvSHM1THlDR3lGY0hsZ3JoWUhVR0ZRZXQ1N21mSEJ1TFpPOWt4Vno0c0hZeHF5MmE3T3FjLzEzMjA6OLfEaUIAShIIqLyC0AYQqb2C0AYYio6D0AZQAmIGCJIJEKgFcKX/nQEK+gEIpsOGxQQSHG9MNjFNdmxITHdlamxjMWhnWWROcWtRNzZIMVUaDOaipumGkuS6hi0uLSKZAWh0dHBzOi8vdGhpcmR3eC5xbG9nby5jbi9tbW9wZW4vdmlfMzIvQ2xKTlNMRGdpYTVmSDBvMG5qZGt3OTlLMEl4R2tqQzkzVHdDVDR2Q0ZYQms5OVFYNTVxNFBMVWxMVTVyZG1Gem53NTN0dTZkNVB2aWFIc29iN0E0VWE5WU0zQ0NxeWliYmlhbkQ1TzJ1WEc4R0wwLzEzMjA5OLW/jQJCAEoSCLG6gtAGEMXAgtAGGKO6gtAGUAJiBgiwCRDAB3CDupoBCuQBCLji+sQEEhxvTDYxTXZ1bWV5RWRjVGEwbm1LYkdjbzZMMVJrGgjwn5G08J+PuyKIAWh0dHBzOi8vdGhpcmR3eC5xbG9nby5jbi9tbW9wZW4vdmlfMzIvc0U1U2ljSEZmUTh0TmwyRjd4SnhrWWliRUlPV1pWejY4S0Vhb2RLbWhVaWJSaWNRNUcxM3FEWGVyZTlUaWNpYkZoRm4zS01uUmljOXljUGVNMTkyRThNQ2dpYnZvQS8xMzIwODibk1lCAEoSCKq8gtAGEIDBgtAGGNLLgtAGUAJiBgiwCRDwBnCA2JIBCvMBCL+Kt48EEhxvTDYxTXZ0dmFVaFVRM2pNdFlYd2g3NUN2WGpjGgnokbHlp5zokpwilwFodHRwczovL3RoaXJkd3gucWxvZ28uY24vbW1vcGVuL3ZpXzMyL1ZzT016ZnpMdXczOGUwZmhYemU1a0xYbFNhSHlhVDdKZDJWZVAzWkhBMDNzTHRUelZ1QXk4OXpCVm96emZydzJvQldnVjB2dFhoNTFpYjZxWldpYm1HS1lwempVRW9rbWphdDR0OWJRQmxJeTAvMTMyMDU47fFgQgBKEgiYxILQBhDe0oLQBhiAxYLQBlACYgYIiAkQiARwwoJ7",
+    "text": ""
+  }
+}

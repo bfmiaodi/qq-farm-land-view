@@ -1,0 +1,30 @@
+{
+  "ts": "2026-05-10 23:03:00",
+  "source": "mitmproxy",
+  "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0c15eqll2OMdHh4F1Aol2hFahb25eqlS&openID=",
+  "direction": "client_to_server",
+  "messageType": "binary",
+  "opcode": 2,
+  "remoteIp": "127.0.0.1",
+  "service": "gamepb.friendpb.FriendService",
+  "method": "GetGameFriends",
+  "isTarget": true,
+  "gateMeta": {
+    "service_name": "gamepb.friendpb.FriendService",
+    "method_name": "GetGameFriends",
+    "message_type": 1,
+    "client_seq": "17",
+    "server_seq": "16"
+  },
+  "summary": null,
+  "raw": {
+    "url": "https://gate-obt.nqf.qq.com/prod/ws?platform=wx&os=OS%20X&ver=1.11.2.8_20260508&code=0c15eqll2OMdHh4F1Aol2hFahb25eqlS&openID=",
+    "direction": "client_to_server",
+    "opcode": 2,
+    "messageType": "binary",
+    "dropped": false,
+    "injected": false,
+    "base64": "CjUKHWdhbWVwYi5mcmllbmRwYi5GcmllbmRTZXJ2aWNlEg5HZXRHYW1lRnJpZW5kcxgBIBEoEBI5g8l24dfGiJXWu48+J2FhwFFPS8Eph6iBuJCxDWMK0s5CP26BClkAExfx00tpxrZiIJEPveQwL0zXGk1ySDdoSW1BMU5YQk9iVjhRN0k0a0g5MU5zY3pOaU9RN29iWm12ZnFOaGNFN1JybWZxR3FQamZ4Q1M3NHdXYmZDTU5keXdlVU10TFFjPQ==",
+    "text": ""
+  }
+}
