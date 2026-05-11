@@ -41,6 +41,32 @@ npm install
 pip install mitmproxy
 ```
 
+## 打包为 Windows EXE
+
+当前项目已接入 Electron 打包骨架，支持把桌面程序与 `mitmdump.exe` 一起分发。
+
+打包前需要先准备：
+
+- 把 Windows 版 `mitmdump.exe` 放到：
+  `vendor/mitmproxy/win/mitmdump.exe`
+
+然后执行：
+
+```bash
+npm install
+npm run dist:win
+```
+
+输出安装包目录：
+
+- `dist/`
+
+开发态桌面运行：
+
+```bash
+npm run desktop
+```
+
 ## 启动
 
 默认只需要一条命令：

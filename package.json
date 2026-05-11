@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "commonjs",
+  "main": "electron/main.js",
   "description": "Standalone decoder for QQ Farm AllLands websocket binary messages",
   "bin": {
     "decode-all-lands": "./src/index.js",
@@ -13,6 +14,9 @@
     "stop": "node ./src/stop.js",
     "restart": "npm run stop && npm run start",
     "status": "node ./src/status.js",
+    "desktop": "electron .",
+    "dist:win": "electron-builder --win nsis",
+    "dist:win:fresh": "node ./scripts/dist-win-fresh.js",
     "decode": "node ./src/index.js",
     "decode:raw": "node ./src/index.js ./data.bin --raw-json",
     "decode:pretty": "node ./src/index.js ./data.bin --pretty-json",
@@ -23,5 +27,62 @@
     "@resvg/resvg-js": "^2.6.2",
     "express": "^4.21.0",
     "protobufjs": "^8.0.0"
+  },
+  "devDependencies": {
+    "electron": "^37.1.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.hqh.qqfarm.monitor",
+    "productName": "QQ Farm Monitor",
+    "directories": {
+      "output": "dist"
+    },
+    "asar": true,
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "proto/**/*",
+      "game-config/**/*",
+      "qq-farm-bot-ui/core/src/proto/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/mitmproxy/win/mitmdump.exe",
+        "to": "bin/mitmdump.exe"
+      },
+      {
+        "from": "src",
+        "to": "runtime-app/src"
+      },
+      {
+        "from": "proto",
+        "to": "runtime-app/proto"
+      },
+      {
+        "from": "game-config",
+        "to": "runtime-app/game-config"
+      },
+      {
+        "from": "qq-farm-bot-ui/core/src/proto",
+        "to": "runtime-app/qq-farm-bot-ui/core/src/proto"
+      }
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }

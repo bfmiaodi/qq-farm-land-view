@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const fs = require('node:fs');
 const path = require('node:path');
 const http = require('node:http');
 const { spawn } = require('node:child_process');
@@ -18,10 +19,24 @@ const {
     isMacOS,
     setMacOSSystemProxy,
 } = require('./macos-proxy');
+const {
+    appRoot,
+    dataRoot,
+    resourceRoot,
+    resolveResource,
+    resolveMitmExecutable,
+    ensureDir,
+} = require('./runtime-paths');
 
-const projectRoot = path.resolve(__dirname, '..');
-const mitmAddon = path.join(projectRoot, 'src', 'mitmproxy-qqfarm-addon.py');
-const logServer = path.join(projectRoot, 'src', 'reqable-log-server.js');
+const projectRoot = appRoot;
+const mitmAddon = process.env.QQFARM_MITM_ADDON_PATH
+    ? path.resolve(process.env.QQFARM_MITM_ADDON_PATH)
+    : resolveResource('src', 'mitmproxy-qqfarm-addon.py');
+const logServer = resolveResource('src', 'reqable-log-server.js');
+const mitmExecutable = resolveMitmExecutable();
+const processCwd = process.env.QQFARM_PROCESS_CWD
+    ? path.resolve(process.env.QQFARM_PROCESS_CWD)
+    : ((fs.existsSync(projectRoot) && fs.statSync(projectRoot).isDirectory()) ? projectRoot : dataRoot);
 const serverPort = Number(process.env.REQABLE_LOG_PORT || 18088);
 const mitmPort = Number(process.env.MITM_PORT || 9000);
 const monitorUrl = `http://127.0.0.1:${serverPort}/`;
@@ -44,7 +59,7 @@ function forwardPrefix(stream, prefix, target) {
 
 function spawnProcess(name, cmd, args, options = {}) {
     const child = spawn(cmd, args, {
-        cwd: projectRoot,
+        cwd: processCwd,
         stdio: ['ignore', 'pipe', 'pipe'],
         detached: false,
         env: { ...process.env, ...(options.env || {}) },
@@ -52,6 +67,9 @@ function spawnProcess(name, cmd, args, options = {}) {
 
     forwardPrefix(child.stdout, `[${name}] `, process.stdout);
     forwardPrefix(child.stderr, `[${name}] `, process.stderr);
+    child.on('error', (error) => {
+        process.stderr.write(`[${name}] spawn failed: ${error.message}\n`);
+    });
     child.on('exit', (code, signal) => {
         const suffix = signal ? `signal=${signal}` : `code=${code}`;
         process.stderr.write(`[${name}] exited ${suffix}\n`);
@@ -160,12 +178,19 @@ async function main() {
     if (existing) clearPidInfo();
 
     await assertPortsAvailable();
+    ensureDir(dataRoot);
 
     const logProc = spawnProcess('server', process.execPath, [logServer], {
         env: {
             REQABLE_LOG_PORT: String(serverPort),
             CAPTURE_MODE: captureMode,
             MITM_PROXY_MODE: mitmMode,
+            QQFARM_APP_ROOT: appRoot,
+            QQFARM_RESOURCE_ROOT: resourceRoot,
+            QQFARM_DATA_ROOT: dataRoot,
+            QQFARM_MITMDUMP_PATH: mitmExecutable,
+            QQFARM_MITM_ADDON_PATH: mitmAddon,
+            QQFARM_PROCESS_CWD: processCwd,
         },
     });
 
@@ -175,13 +200,26 @@ async function main() {
     let macosProxyState = null;
 
     if (captureMode === 'mitmproxy') {
-        mitmProc = spawnProcess('mitm', 'mitmdump', [
+        if (process.platform === 'win32' && mitmExecutable.endsWith('mitmdump.exe') && !require('node:fs').existsSync(mitmExecutable)) {
+            throw new Error(`mitmdump executable not found: ${mitmExecutable}. Put Windows mitmdump at vendor/mitmproxy/win/mitmdump.exe or set QQFARM_MITMDUMP_PATH.`);
+        }
+
+        mitmProc = spawnProcess('mitm', mitmExecutable, [
             '--mode', mitmMode,
             '-p', String(mitmPort),
             '--ssl-insecure',
             '--set', 'connection_strategy=lazy',
             '-s', mitmAddon,
-        ]);
+        ], {
+            env: {
+                QQFARM_APP_ROOT: appRoot,
+                QQFARM_RESOURCE_ROOT: resourceRoot,
+                QQFARM_DATA_ROOT: dataRoot,
+                QQFARM_MITMDUMP_PATH: mitmExecutable,
+                QQFARM_MITM_ADDON_PATH: mitmAddon,
+                QQFARM_PROCESS_CWD: processCwd,
+            },
+        });
 
         if (isWindows() && mitmMode === 'regular') {
             windowsProxyState = await setWindowsSystemProxy('127.0.0.1', mitmPort);

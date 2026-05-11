@@ -9,6 +9,12 @@ const {
     isPidAlive,
 } = require('./process-manager');
 const {
+    appRoot,
+    dataRoot,
+    resolveData,
+    resolveResource,
+} = require('./runtime-paths');
+const {
     loadProto,
     loadGameConfig,
     decodeLands,
@@ -19,8 +25,10 @@ const {
 } = require('./index');
 
 const DEFAULT_PORT = Number(process.env.REQABLE_LOG_PORT || 18088);
-const DEFAULT_LOG_DIR = path.resolve(process.cwd(), 'logs');
-const PROJECT_ROOT = path.resolve(__dirname, '..');
+const DEFAULT_LOG_DIR = process.env.QQFARM_LOG_DIR
+    ? path.resolve(process.env.QQFARM_LOG_DIR)
+    : resolveData('logs');
+const PROJECT_ROOT = appRoot;
 const TARGET_WS_URL = 'wss://gate-obt.nqf.qq.com/prod/ws';
 const TARGET_WS_HOST = 'gate-obt.nqf.qq.com';
 const TARGET_WS_PATH = '/prod/ws';

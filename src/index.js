@@ -3,11 +3,15 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const protobuf = require('protobufjs');
+const {
+    appRoot,
+    resolveResource,
+} = require('./runtime-paths');
 
-const projectRoot = path.resolve(__dirname, '..');
-const protoDir = path.join(projectRoot, 'proto');
-const externalProtoDir = path.join(projectRoot, 'qq-farm-bot-ui', 'core', 'src', 'proto');
-const gameConfigDir = path.join(projectRoot, 'game-config');
+const projectRoot = appRoot;
+const protoDir = resolveResource('proto');
+const externalProtoDir = resolveResource('qq-farm-bot-ui', 'core', 'src', 'proto');
+const gameConfigDir = resolveResource('game-config');
 
 const PLANT_PHASE = {
     UNKNOWN: 0,

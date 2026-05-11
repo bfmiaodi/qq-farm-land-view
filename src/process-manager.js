@@ -3,15 +3,16 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const net = require('node:net');
+const {
+    ensureDir,
+    resolveRun,
+} = require('./runtime-paths');
 
-const projectRoot = path.resolve(__dirname, '..');
-const runDir = path.join(projectRoot, '.run');
+const runDir = resolveRun();
 const pidFile = path.join(runDir, 'farm-monitor.json');
 
 function ensureRunDir() {
-    if (!fs.existsSync(runDir)) {
-        fs.mkdirSync(runDir, { recursive: true });
-    }
+    ensureDir(runDir);
 }
 
 function readPidInfo() {

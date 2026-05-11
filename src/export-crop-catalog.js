@@ -2,9 +2,13 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const {
+    appRoot,
+    resolveResource,
+} = require('./runtime-paths');
 
-const projectRoot = path.resolve(__dirname, '..');
-const gameConfigDir = path.join(projectRoot, 'game-config');
+const projectRoot = appRoot;
+const gameConfigDir = resolveResource('game-config');
 
 function parseArgs() {
     const args = process.argv.slice(2);
