@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const path = require('node:path');
+const http = require('node:http');
 const { spawn } = require('node:child_process');
 const {
     readPidInfo,
@@ -47,6 +48,54 @@ function spawnProcess(name, cmd, args, options = {}) {
     return child;
 }
 
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function getJson(url, timeoutMs = 800) {
+    return new Promise((resolve) => {
+        const req = http.get(url, (res) => {
+            let data = '';
+            res.setEncoding('utf8');
+            res.on('data', (chunk) => { data += chunk; });
+            res.on('end', () => {
+                try {
+                    resolve({ ok: true, status: res.statusCode || 0, data: JSON.parse(data) });
+                } catch {
+                    resolve({ ok: false, status: res.statusCode || 0, data: null });
+                }
+            });
+        });
+        req.on('error', () => resolve({ ok: false, status: 0, data: null }));
+        req.setTimeout(timeoutMs, () => {
+            req.destroy();
+            resolve({ ok: false, status: 0, data: null });
+        });
+    });
+}
+
+async function waitForServerReady(child, timeoutMs = 10000) {
+    const startedAt = Date.now();
+
+    while (Date.now() - startedAt < timeoutMs) {
+        if (child.exitCode !== null) {
+            throw new Error(`log server exited early with code=${child.exitCode}`);
+        }
+
+        const portOpen = await checkPortOpen(serverPort);
+        if (portOpen) {
+            const health = await getJson(`http://127.0.0.1:${serverPort}/healthz`);
+            if (health.ok && health.status >= 200 && health.status < 300) {
+                return;
+            }
+        }
+
+        await sleep(200);
+    }
+
+    throw new Error(`log server did not become ready on 127.0.0.1:${serverPort} within ${timeoutMs}ms`);
+}
+
 async function assertPortsAvailable() {
     const checks = [{ port: serverPort, name: 'log-server' }];
     if (captureMode === 'mitmproxy') {
@@ -79,6 +128,8 @@ async function main() {
             MITM_PROXY_MODE: mitmMode,
         },
     });
+
+    await waitForServerReady(logProc);
     let mitmProc = null;
 
     if (captureMode === 'mitmproxy') {
