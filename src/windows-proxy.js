@@ -21,12 +21,10 @@ function runRegistry(args) {
 function runInternetSetOption() {
     return new Promise((resolve, reject) => {
         const command = [
-            'Add-Type -Namespace WinInet -Name Native -MemberDefinition @\'',
-            '[DllImport("wininet.dll", SetLastError = true)]',
-            'public static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int dwBufferLength);',
-            '\'@;',
-            '[WinInet.Native]::InternetSetOption([IntPtr]::Zero, 39, [IntPtr]::Zero, 0) | Out-Null;',
-            '[WinInet.Native]::InternetSetOption([IntPtr]::Zero, 37, [IntPtr]::Zero, 0) | Out-Null;',
+            '$typeDef = \'using System; using System.Runtime.InteropServices; public static class WinInetNative { [DllImport("wininet.dll", SetLastError=true)] public static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int dwBufferLength); }\';',
+            'Add-Type -TypeDefinition $typeDef;',
+            '[WinInetNative]::InternetSetOption([IntPtr]::Zero, 39, [IntPtr]::Zero, 0) | Out-Null;',
+            '[WinInetNative]::InternetSetOption([IntPtr]::Zero, 37, [IntPtr]::Zero, 0) | Out-Null;',
         ].join(' ');
 
         execFile('powershell', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-Command', command], { windowsHide: true }, (error, stdout, stderr) => {
