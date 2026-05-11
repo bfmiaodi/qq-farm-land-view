@@ -148,6 +148,12 @@ npm start
 
 并且客户端需要信任 `mitmproxy` 根证书，否则 HTTPS/WSS 握手会失败。
 
+证书安装入口：
+
+- 在已走代理的客户端环境里打开 [http://mitm.it/](http://mitm.it/)
+- 按页面提示下载并安装对应平台的 `mitmproxy` 根证书
+- Windows 上建议安装到“受信任的根证书颁发机构”
+
 ## 访问地址
 
 服务启动后可访问：
