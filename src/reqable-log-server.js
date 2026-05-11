@@ -171,7 +171,8 @@ function cloneState() {
 
 function getUiRuntimeStatus() {
     const pidInfo = readPidInfo();
-    const proxyRunning = !!(pidInfo && pidInfo.mitmPid && isPidAlive(pidInfo.mitmPid));
+    const captureMode = String((pidInfo && pidInfo.captureMode) || process.env.CAPTURE_MODE || '').trim() || 'mitmproxy';
+    const mitmRunning = !!(pidInfo && pidInfo.mitmPid && isPidAlive(pidInfo.mitmPid));
     const serverRunning = true;
     const lastCaptureAt = runtimeState.updatedAt || '';
     const hasFriendData = !!(
@@ -181,7 +182,9 @@ function getUiRuntimeStatus() {
     );
 
     return {
-        proxyRunning,
+        captureMode,
+        proxyRunning: captureMode === 'reqable' ? true : mitmRunning,
+        captureModeLabel: captureMode === 'reqable' ? 'Reqable 回调' : 'mitmproxy',
         serverRunning,
         lastCaptureAt,
         hasFriendData,
@@ -226,34 +229,14 @@ function isTargetWsUrl(urlValue) {
 
     try {
         const parsed = new URL(value);
-        return parsed.hostname === TARGET_WS_HOST && parsed.pathname === TARGET_WS_PATH;
+        if (parsed.hostname === TARGET_WS_HOST && parsed.pathname === TARGET_WS_PATH) {
+            return true;
+        }
+        return parsed.pathname === TARGET_WS_PATH;
     } catch {
-        return value.includes(TARGET_WS_HOST) && value.includes(TARGET_WS_PATH);
+        return (value.includes(TARGET_WS_HOST) && value.includes(TARGET_WS_PATH))
+            || value.includes(TARGET_WS_PATH);
     }
-}
-
-function buildLogEntry(payload, remoteIp) {
-    const ts = nowForLine();
-    const record = payload && typeof payload === 'object' ? payload : {};
-    const url = String(record.url || record.websocketUrl || record.requestUrl || '');
-    const direction = String(record.direction || record.wsDirection || record.from || '').toLowerCase();
-    const messageType = String(record.messageType || record.type || record.frameType || '').toLowerCase();
-    const body = record.body ?? record.message ?? record.data ?? '';
-    const text = decodeBodyToString(body);
-    const base64 = decodeBodyToBase64(body);
-
-    return {
-        ts,
-        remoteIp,
-        source: 'reqable',
-        url,
-        matched: isTargetWsUrl(url),
-        direction,
-        messageType,
-        text,
-        base64,
-        raw: record,
-    };
 }
 
 function appendJsonLine(dir, name, obj) {
@@ -276,6 +259,30 @@ function decodeBase64ToBuffer(base64) {
     return Buffer.from(base64, 'base64');
 }
 
+function normalizeDirection(value) {
+    const raw = String(value || '').trim().toLowerCase();
+    if (!raw) return '';
+    if (raw === 'inbound' || raw === 'receive' || raw === 'received' || raw === 'server' || raw === 'server_to_client') {
+        return 'server_to_client';
+    }
+    if (raw === 'outbound' || raw === 'send' || raw === 'sent' || raw === 'client' || raw === 'client_to_server') {
+        return 'client_to_server';
+    }
+    if (raw.includes('server') && raw.includes('client')) return 'server_to_client';
+    if (raw.includes('client') && raw.includes('server')) return 'client_to_server';
+    return raw;
+}
+
+function normalizeMessageType(value, opcode) {
+    const raw = String(value || '').trim().toLowerCase();
+    const op = Number(opcode);
+    if (raw === 'binary' || raw === 'bin') return 'binary';
+    if (raw === 'text' || raw === 'txt') return 'text';
+    if (op === 2) return 'binary';
+    if (op === 1) return 'text';
+    return raw;
+}
+
 function getMessageTypeFlags(messageType, opcode) {
     const normalized = String(messageType || '').toLowerCase();
     const op = Number(opcode);
@@ -287,8 +294,8 @@ function getMessageTypeFlags(messageType, opcode) {
 function buildMitmEntry(payload, remoteIp) {
     const record = payload && typeof payload === 'object' ? payload : {};
     const url = String(record.url || '');
-    const messageType = String(record.messageType || '').toLowerCase();
-    const direction = String(record.direction || '').toLowerCase();
+    const messageType = normalizeMessageType(record.messageType, record.opcode);
+    const direction = normalizeDirection(record.direction);
     const opcode = Number(record.opcode);
     const base64 = String(record.base64 || '');
     const text = typeof record.text === 'string' ? record.text : '';
@@ -297,6 +304,36 @@ function buildMitmEntry(payload, remoteIp) {
         ts: nowForLine(),
         remoteIp,
         source: 'mitmproxy',
+        url,
+        matched: isTargetWsUrl(url),
+        direction,
+        messageType,
+        opcode: Number.isFinite(opcode) ? opcode : 0,
+        text,
+        base64,
+        raw: record,
+    };
+}
+
+function buildFrameEntry(payload, remoteIp, source) {
+    const normalizedSource = String(source || '').trim() || 'unknown';
+    if (normalizedSource === 'mitmproxy') {
+        return buildMitmEntry(payload, remoteIp);
+    }
+
+    const record = payload && typeof payload === 'object' ? payload : {};
+    const url = String(record.url || record.websocketUrl || record.requestUrl || '');
+    const opcode = Number(record.opcode ?? record.wsOpcode ?? record.frameOpcode);
+    const messageType = normalizeMessageType(record.messageType || record.type || record.frameType, opcode);
+    const direction = normalizeDirection(record.direction || record.wsDirection || record.from);
+    const body = record.body ?? record.message ?? record.data ?? record.payload ?? '';
+    const text = decodeBodyToString(body);
+    const base64 = decodeBodyToBase64(body);
+
+    return {
+        ts: nowForLine(),
+        remoteIp,
+        source: normalizedSource,
         url,
         matched: isTargetWsUrl(url),
         direction,
@@ -863,6 +900,7 @@ function renderMonitorPage(state) {
           <p><span class="pill">最近帧</span>${s.lastFrame ? `${s.lastFrame.service}.${s.lastFrame.method} / ${s.lastFrame.direction}` : '-'}</p>
         </div>
         <div class="hero-status">
+          ${renderRuntimePill('抓包方式', runtimeStatus.captureModeLabel, true)}
           ${renderRuntimePill('代理状态', runtimeStatus.proxyRunning ? '已启动' : '未启动', runtimeStatus.proxyRunning)}
           ${renderRuntimePill('本地服务', runtimeStatus.serverRunning ? '正常' : '异常', runtimeStatus.serverRunning)}
           ${renderRuntimePill('最近抓包时间', runtimeStatus.lastCaptureAt || '暂无', !!runtimeStatus.lastCaptureAt)}
@@ -1202,8 +1240,12 @@ function writeBinaryFrame(baseDir, entry, buffer, decoded) {
 }
 
 async function handleMitmFrame(payload, remoteIp) {
-    const entry = buildMitmEntry(payload, remoteIp);
-    const allFile = appendJsonLine(DEFAULT_LOG_DIR, 'mitm-ws-all', entry);
+    return handleIncomingFrame(payload, remoteIp, 'mitmproxy', 'mitm-ws-all');
+}
+
+async function handleIncomingFrame(payload, remoteIp, source, allLogName) {
+    const entry = buildFrameEntry(payload, remoteIp, source);
+    const allFile = appendJsonLine(DEFAULT_LOG_DIR, allLogName, entry);
 
     if (!entry.matched) {
         return {
@@ -1246,7 +1288,6 @@ async function handleMitmFrame(payload, remoteIp) {
         ...files,
     };
 }
-
 async function startServer() {
     await ensureRuntime();
 
@@ -1383,45 +1424,49 @@ async function startServer() {
         res.type('html').send(renderMonitorPage(cloneState()));
     });
 
-    app.post('/reqable/ws-log', (req, res) => {
-        const entry = buildLogEntry(req.body, req.ip || '');
-        const allFile = appendJsonLine(DEFAULT_LOG_DIR, 'reqable-ws-all', entry);
-
-        let targetFile = '';
-        if (entry.matched) {
-            targetFile = appendJsonLine(DEFAULT_LOG_DIR, 'qq-farm-gate-ws', entry);
+    app.post('/reqable/ws-log', async (req, res) => {
+        try {
+            const result = await handleIncomingFrame(req.body, req.ip || '', 'reqable', 'reqable-ws-all');
+            res.json(result);
+        } catch (error) {
+            res.status(500).json({
+                ok: false,
+                error: error && error.stack ? error.stack : String(error),
+            });
         }
-
-        res.json({
-            ok: true,
-            matched: entry.matched,
-            allFile,
-            targetFile,
-        });
     });
 
-    app.post('/reqable/ws-batch', (req, res) => {
+    app.post('/reqable/ws-batch', async (req, res) => {
         const list = Array.isArray(req.body) ? req.body : [];
         let matched = 0;
         let allCount = 0;
-        let targetFile = '';
+        let saved = 0;
+        const results = [];
 
-        for (const item of list) {
-            const entry = buildLogEntry(item, req.ip || '');
-            appendJsonLine(DEFAULT_LOG_DIR, 'reqable-ws-all', entry);
-            allCount++;
-            if (entry.matched) {
-                targetFile = appendJsonLine(DEFAULT_LOG_DIR, 'qq-farm-gate-ws', entry);
-                matched++;
+        try {
+            for (const item of list) {
+                const result = await handleIncomingFrame(item, req.ip || '', 'reqable', 'reqable-ws-all');
+                results.push(result);
+                allCount++;
+                if (result.matched) matched++;
+                if (result.saved) saved++;
             }
+            res.json({
+                ok: true,
+                total: allCount,
+                matched,
+                saved,
+                results,
+            });
+        } catch (error) {
+            res.status(500).json({
+                ok: false,
+                total: allCount,
+                matched,
+                saved,
+                error: error && error.stack ? error.stack : String(error),
+            });
         }
-
-        res.json({
-            ok: true,
-            total: allCount,
-            matched,
-            targetFile,
-        });
     });
 
     app.post('/mitm/ws-frame', async (req, res) => {

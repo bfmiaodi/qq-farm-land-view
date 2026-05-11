@@ -43,7 +43,7 @@ pip install mitmproxy
 
 ## 启动
 
-现在默认只需要一条命令：
+Mac 上如果你继续走 `mitmproxy`，默认只需要一条命令：
 
 ```bash
 cd /Users/hqh/Desktop/03-study/scripts
@@ -67,13 +67,13 @@ npm run status
 
 ```bash
 node src/reqable-log-server.js
-mitmdump --mode socks5 -p 8080 --ssl-insecure --set connection_strategy=lazy -s src/mitmproxy-qqfarm-addon.py
+mitmdump --mode socks5 -p 9000 --ssl-insecure --set connection_strategy=lazy -s src/mitmproxy-qqfarm-addon.py
 ```
 
 启动前会自动检查这两个端口是否已被占用：
 
 - `18088`
-- `8080`
+- `9000`
 
 如果端口被占用，会直接报错并拒绝启动，避免半启动状态。
 
@@ -85,13 +85,61 @@ node src/reqable-log-server.js
 
 如果你的客户端不是 `SOCKS5`，而是普通 `HTTP/HTTPS` 代理，则不要用 `--mode socks5`。
 
+## Windows 推荐启动方式
+
+Windows 下优先推荐走 `Reqable -> 本地 HTTP 回调`，不依赖本机开 `SOCKS5` socket 代理：
+
+```bash
+cd D:\path\to\qq-farm-land-view
+$env:CAPTURE_MODE="reqable"
+npm start
+```
+
+这时只会启动本地解码服务，不会再拉起 `mitmdump`。
+
+然后在 `Reqable` 里把目标 WebSocket 帧转发到：
+
+```text
+POST http://127.0.0.1:18088/reqable/ws-log
+```
+
+如果 `Reqable` 支持批量推送，也可以转发到：
+
+```text
+POST http://127.0.0.1:18088/reqable/ws-batch
+```
+
+要求：
+
+- URL 命中 `wss://gate-obt.nqf.qq.com/prod/ws`
+- 二进制帧内容要按原始字节传过来，服务端会直接做 protobuf 解码
+- 文本帧可以传，但不会进入土地解码
+
+## mitmproxy 启动模式
+
+如果仍然想走 `mitmproxy`，现在支持两种代理模式：
+
+```bash
+# SOCKS5
+$env:CAPTURE_MODE="mitmproxy"
+$env:MITM_PROXY_MODE="socks5"
+npm start
+
+# HTTP/HTTPS regular proxy
+$env:CAPTURE_MODE="mitmproxy"
+$env:MITM_PROXY_MODE="regular"
+npm start
+```
+
+`MITM_PROXY_MODE=regular` 对应 `mitmdump --mode regular`，适合客户端只能配普通 HTTP/HTTPS 代理的场景。
+
 ## 客户端代理
 
 当前这套抓包在你的环境里是按 `SOCKS5` 跑通的：
 
 - 代理类型：`SOCKS5`
 - 地址：`127.0.0.1`
-- 端口：`8080`
+- 端口：`9000`
 
 并且客户端需要信任 `mitmproxy` 根证书，否则 HTTPS/WSS 握手会失败。
 

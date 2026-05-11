@@ -14,7 +14,9 @@ const projectRoot = path.resolve(__dirname, '..');
 const mitmAddon = path.join(projectRoot, 'src', 'mitmproxy-qqfarm-addon.py');
 const logServer = path.join(projectRoot, 'src', 'reqable-log-server.js');
 const serverPort = Number(process.env.REQABLE_LOG_PORT || 18088);
-const mitmPort = Number(process.env.MITM_PORT || 8080);
+const mitmPort = Number(process.env.MITM_PORT || 9000);
+const captureMode = String(process.env.CAPTURE_MODE || '').trim().toLowerCase() || 'mitmproxy';
+const mitmMode = String(process.env.MITM_PROXY_MODE || '').trim().toLowerCase() || 'socks5';
 
 function forwardPrefix(stream, prefix, target) {
     stream.on('data', (chunk) => {
@@ -46,10 +48,10 @@ function spawnProcess(name, cmd, args, options = {}) {
 }
 
 async function assertPortsAvailable() {
-    const checks = [
-        { port: serverPort, name: 'log-server' },
-        { port: mitmPort, name: 'mitmdump' },
-    ];
+    const checks = [{ port: serverPort, name: 'log-server' }];
+    if (captureMode === 'mitmproxy') {
+        checks.push({ port: mitmPort, name: 'mitmdump' });
+    }
 
     for (const item of checks) {
         const open = await checkPortOpen(item.port);
@@ -71,29 +73,43 @@ async function main() {
     await assertPortsAvailable();
 
     const logProc = spawnProcess('server', process.execPath, [logServer], {
-        env: { REQABLE_LOG_PORT: String(serverPort) },
+        env: {
+            REQABLE_LOG_PORT: String(serverPort),
+            CAPTURE_MODE: captureMode,
+            MITM_PROXY_MODE: mitmMode,
+        },
     });
-    const mitmProc = spawnProcess('mitm', 'mitmdump', [
-        '--mode', 'socks5',
-        '-p', String(mitmPort),
-        '--ssl-insecure',
-        '--set', 'connection_strategy=lazy',
-        '-s', mitmAddon,
-    ]);
+    let mitmProc = null;
+
+    if (captureMode === 'mitmproxy') {
+        mitmProc = spawnProcess('mitm', 'mitmdump', [
+            '--mode', mitmMode,
+            '-p', String(mitmPort),
+            '--ssl-insecure',
+            '--set', 'connection_strategy=lazy',
+            '-s', mitmAddon,
+        ]);
+    } else if (captureMode !== 'reqable') {
+        process.stderr.write(`[main] unsupported CAPTURE_MODE=${captureMode}, expected mitmproxy or reqable\n`);
+        if (!logProc.killed) logProc.kill('SIGINT');
+        process.exit(1);
+    }
 
     writePidInfo({
         mainPid: process.pid,
         serverPid: logProc.pid,
-        mitmPid: mitmProc.pid,
+        mitmPid: mitmProc ? mitmProc.pid : 0,
         serverPort,
-        mitmPort,
+        mitmPort: captureMode === 'mitmproxy' ? mitmPort : 0,
+        captureMode,
+        mitmMode: captureMode === 'mitmproxy' ? mitmMode : '',
         startedAt: new Date().toISOString(),
     });
 
     function shutdown(signal) {
         process.stderr.write(`[main] shutting down by ${signal}\n`);
         if (!logProc.killed) logProc.kill('SIGINT');
-        if (!mitmProc.killed) mitmProc.kill('SIGINT');
+        if (mitmProc && !mitmProc.killed) mitmProc.kill('SIGINT');
         clearPidInfo();
         setTimeout(() => process.exit(0), 300);
     }

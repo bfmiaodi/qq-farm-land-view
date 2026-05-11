@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import base64
 import json
+import os
 import urllib.error
 import urllib.request
 
@@ -9,8 +10,9 @@ from mitmproxy import ctx, websocket
 
 TARGET_WS_HOST = "gate-obt.nqf.qq.com"
 TARGET_WS_PATH = "/prod/ws"
-POST_URL = "http://127.0.0.1:18088/mitm/ws-frame"
-TIMEOUT_SEC = 1.5
+POST_URL = os.environ.get("QQFARM_POST_URL", "http://127.0.0.1:18088/mitm/ws-frame")
+TIMEOUT_SEC = float(os.environ.get("QQFARM_POST_TIMEOUT_SEC", "1.5"))
+NO_PROXY_OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 
 def _frame_type(opcode: int) -> str:
@@ -60,7 +62,10 @@ def _is_target_flow(flow) -> bool:
 
     host = str(getattr(request, "host", "") or "")
     path = str(getattr(request, "path", "") or "")
-    return host == TARGET_WS_HOST and path.startswith(TARGET_WS_PATH)
+    if host == TARGET_WS_HOST and path.startswith(TARGET_WS_PATH):
+        return True
+    # Windows side may tunnel the farm WSS by direct IP while keeping the same path/query.
+    return path.startswith(TARGET_WS_PATH)
 
 
 def _post_json(payload: dict) -> None:
@@ -71,7 +76,9 @@ def _post_json(payload: dict) -> None:
         headers={"Content-Type": "application/json"},
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=TIMEOUT_SEC) as resp:
+    # Do not inherit system proxy settings here, otherwise the local callback
+    # request may be routed back into mitmproxy and deadlock on Windows.
+    with NO_PROXY_OPENER.open(req, timeout=TIMEOUT_SEC) as resp:
         if resp.status >= 300:
             raise RuntimeError(f"receiver returned HTTP {resp.status}")
 
