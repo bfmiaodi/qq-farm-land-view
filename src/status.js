@@ -48,6 +48,9 @@ function getJson(url) {
         if (captureMode === 'mitmproxy') {
             process.stdout.write(`- mitm pid: ${pidInfo.mitmPid} (${isPidAlive(pidInfo.mitmPid) ? 'alive' : 'dead'})\n`);
             process.stdout.write(`- mitm mode: ${pidInfo.mitmMode || 'socks5'}\n`);
+            if (pidInfo.windowsProxyState) {
+                process.stdout.write(`- windows system proxy: enabled (127.0.0.1:${mitmPort})\n`);
+            }
         }
         process.stdout.write(`- started at: ${pidInfo.startedAt}\n`);
     }

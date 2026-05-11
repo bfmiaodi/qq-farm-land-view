@@ -10,6 +10,10 @@ const {
     isPidAlive,
     checkPortOpen,
 } = require('./process-manager');
+const {
+    isWindows,
+    setWindowsSystemProxy,
+} = require('./windows-proxy');
 
 const projectRoot = path.resolve(__dirname, '..');
 const mitmAddon = path.join(projectRoot, 'src', 'mitmproxy-qqfarm-addon.py');
@@ -132,6 +136,7 @@ async function main() {
 
     await waitForServerReady(logProc);
     let mitmProc = null;
+    let windowsProxyState = null;
 
     if (captureMode === 'mitmproxy') {
         mitmProc = spawnProcess('mitm', 'mitmdump', [
@@ -141,6 +146,11 @@ async function main() {
             '--set', 'connection_strategy=lazy',
             '-s', mitmAddon,
         ]);
+
+        if (isWindows() && mitmMode === 'regular') {
+            windowsProxyState = await setWindowsSystemProxy('127.0.0.1', mitmPort);
+            process.stdout.write(`[main] Windows system proxy enabled: 127.0.0.1:${mitmPort}\n`);
+        }
     } else if (captureMode !== 'reqable') {
         process.stderr.write(`[main] unsupported CAPTURE_MODE=${captureMode}, expected mitmproxy or reqable\n`);
         if (!logProc.killed) logProc.kill('SIGINT');
@@ -155,6 +165,7 @@ async function main() {
         mitmPort: captureMode === 'mitmproxy' ? mitmPort : 0,
         captureMode,
         mitmMode: captureMode === 'mitmproxy' ? mitmMode : '',
+        windowsProxyState,
         startedAt: new Date().toISOString(),
     });
 
