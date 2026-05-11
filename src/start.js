@@ -17,7 +17,8 @@ const logServer = path.join(projectRoot, 'src', 'reqable-log-server.js');
 const serverPort = Number(process.env.REQABLE_LOG_PORT || 18088);
 const mitmPort = Number(process.env.MITM_PORT || 9000);
 const captureMode = String(process.env.CAPTURE_MODE || '').trim().toLowerCase() || 'mitmproxy';
-const mitmMode = String(process.env.MITM_PROXY_MODE || '').trim().toLowerCase() || 'socks5';
+const defaultMitmMode = process.platform === 'win32' ? 'regular' : 'socks5';
+const mitmMode = String(process.env.MITM_PROXY_MODE || '').trim().toLowerCase() || defaultMitmMode;
 
 function forwardPrefix(stream, prefix, target) {
     stream.on('data', (chunk) => {

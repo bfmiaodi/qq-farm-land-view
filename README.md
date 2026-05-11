@@ -43,7 +43,7 @@ pip install mitmproxy
 
 ## 启动
 
-Mac 上如果你继续走 `mitmproxy`，默认只需要一条命令：
+默认只需要一条命令：
 
 ```bash
 cd /Users/hqh/Desktop/03-study/scripts
@@ -55,6 +55,11 @@ npm start
 - 本地 Node 服务
 - `mitmdump`
 
+说明：
+
+- Windows 默认使用 `mitmdump --mode regular`
+- macOS / Linux 默认使用 `mitmdump --mode socks5`
+
 附带命令：
 
 ```bash
@@ -63,7 +68,7 @@ npm run restart
 npm run status
 ```
 
-默认启动参数等价于：
+在 macOS / Linux 上，默认启动参数等价于：
 
 ```bash
 node src/reqable-log-server.js
@@ -348,3 +353,9 @@ logs/frames/20260510/
 2. 继续补齐小号 `mutantConfigId` 映射
 3. 抓资源 manifest，研究 CDN 批量下载
 4. 如果确实需要，把截图页做成更完整的海报风格
+在 Windows 上，默认启动参数等价于：
+
+```bash
+node src/reqable-log-server.js
+mitmdump --mode regular -p 9000 --ssl-insecure --set connection_strategy=lazy -s src/mitmproxy-qqfarm-addon.py
+```
