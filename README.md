@@ -61,7 +61,14 @@ npm start
 - macOS / Linux 默认使用 `mitmdump --mode socks5`
 - Windows 在 `mitmproxy + regular` 模式下，`npm start` 会自动把系统代理设为 `127.0.0.1:9000`
 - macOS 在 `mitmproxy` 模式下，`npm start` 会自动把当前网络服务的系统代理设为 `127.0.0.1:9000`
+- `npm start` 在服务就绪后会自动打开监控页 `http://127.0.0.1:18088/`
 - 对应地，`npm run stop` 会尝试恢复启动前的系统代理配置
+
+如果你不想自动打开浏览器，可以设置：
+
+```bash
+AUTO_OPEN_BROWSER=0 npm start
+```
 
 附带命令：
 

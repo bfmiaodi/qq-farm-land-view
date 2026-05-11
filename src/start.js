@@ -24,9 +24,11 @@ const mitmAddon = path.join(projectRoot, 'src', 'mitmproxy-qqfarm-addon.py');
 const logServer = path.join(projectRoot, 'src', 'reqable-log-server.js');
 const serverPort = Number(process.env.REQABLE_LOG_PORT || 18088);
 const mitmPort = Number(process.env.MITM_PORT || 9000);
+const monitorUrl = `http://127.0.0.1:${serverPort}/`;
 const captureMode = String(process.env.CAPTURE_MODE || '').trim().toLowerCase() || 'mitmproxy';
 const defaultMitmMode = process.platform === 'win32' ? 'regular' : 'socks5';
 const mitmMode = String(process.env.MITM_PROXY_MODE || '').trim().toLowerCase() || defaultMitmMode;
+const autoOpenBrowser = !['0', 'false', 'no', 'off'].includes(String(process.env.AUTO_OPEN_BROWSER || '').trim().toLowerCase());
 
 function forwardPrefix(stream, prefix, target) {
     stream.on('data', (chunk) => {
@@ -55,6 +57,35 @@ function spawnProcess(name, cmd, args, options = {}) {
         process.stderr.write(`[${name}] exited ${suffix}\n`);
     });
     return child;
+}
+
+function openUrl(url) {
+    if (!autoOpenBrowser) return;
+
+    if (process.platform === 'win32') {
+        spawn('cmd', ['/c', 'start', '', url], {
+            cwd: projectRoot,
+            stdio: 'ignore',
+            detached: true,
+            windowsHide: true,
+        }).unref();
+        return;
+    }
+
+    if (process.platform === 'darwin') {
+        spawn('open', [url], {
+            cwd: projectRoot,
+            stdio: 'ignore',
+            detached: true,
+        }).unref();
+        return;
+    }
+
+    spawn('xdg-open', [url], {
+        cwd: projectRoot,
+        stdio: 'ignore',
+        detached: true,
+    }).unref();
 }
 
 function sleep(ms) {
@@ -179,6 +210,9 @@ async function main() {
         macosProxyState,
         startedAt: new Date().toISOString(),
     });
+
+    openUrl(monitorUrl);
+    process.stdout.write(`[main] opened monitor page: ${monitorUrl}\n`);
 
     function shutdown(signal) {
         process.stderr.write(`[main] shutting down by ${signal}\n`);
