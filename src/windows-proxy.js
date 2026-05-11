@@ -176,9 +176,28 @@ async function restoreWindowsSystemProxy(savedState) {
     await runInternetSetOption();
 }
 
+async function disableWindowsSystemProxy() {
+    if (!isWindows()) return;
+
+    await runRegistry([
+        'add',
+        'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings',
+        '/v',
+        'ProxyEnable',
+        '/t',
+        'REG_DWORD',
+        '/d',
+        '0',
+        '/f',
+    ]);
+
+    await runInternetSetOption();
+}
+
 module.exports = {
     isWindows,
     getCurrentProxyState,
     setWindowsSystemProxy,
     restoreWindowsSystemProxy,
+    disableWindowsSystemProxy,
 };

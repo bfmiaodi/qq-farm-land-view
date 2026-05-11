@@ -7,6 +7,7 @@ const {
 } = require('./process-manager');
 const {
     restoreWindowsSystemProxy,
+    disableWindowsSystemProxy,
 } = require('./windows-proxy');
 
 function killIfAlive(pid, label) {
@@ -23,7 +24,13 @@ function killIfAlive(pid, label) {
 (async () => {
     const info = readPidInfo();
     if (!info) {
-        process.stdout.write('[stop] no running process info found\n');
+        try {
+            await disableWindowsSystemProxy();
+            process.stdout.write('[stop] no running process info found, disabled Windows system proxy\n');
+        } catch (error) {
+            process.stdout.write('[stop] no running process info found\n');
+            process.stderr.write(`[stop] failed to disable Windows system proxy: ${error.message}\n`);
+        }
         process.exit(0);
     }
 
