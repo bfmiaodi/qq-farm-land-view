@@ -1,0 +1,14 @@
+﻿seed_id,item_id,plant_id,current_name,image,image_file,source,asset_name
+20069,20069,1020069,种子20069,/game-config/seed_images_named/Crop_69_Seed.png,images/plant_1020069_cf6336913e.png,dynamic-seed-derived,Crop_69
+20101,20101,1020101,种子20101,/game-config/seed_images_named/Crop_101_Seed.png,images/plant_1020101_6ba80b189c.png,dynamic-seed-derived,Crop_101
+20102,20102,1020102,种子20102,/game-config/seed_images_named/Crop_102_Seed.png,images/plant_1020102_fb9132d3d1.png,dynamic-seed-derived,Crop_102
+20106,20106,1020106,种子20106,/game-config/seed_images_named/Crop_106_Seed.png,images/plant_1020106_d22bab24f9.png,dynamic-seed-derived,Crop_106
+20115,20115,1020115,种子20115,/game-config/seed_images_named/Crop_115_Seed.png,images/plant_1020115_ef8e7a4021.png,dynamic-seed-derived,Crop_115
+20124,20124,1020124,种子20124,/game-config/seed_images_named/Crop_124_Seed.png,images/plant_1020124_a89230a533.png,dynamic-seed-derived,Crop_124
+20131,20131,1020131,种子20131,/game-config/seed_images_named/Crop_131_Seed.png,images/plant_1020131_c659e0166c.png,dynamic-seed-derived,Crop_131
+20132,20132,1020132,种子20132,/game-config/seed_images_named/Crop_132_Seed.png,images/plant_1020132_8cf0f194e8.png,dynamic-seed-derived,Crop_132
+20172,20172,1020172,种子20172,/game-config/seed_images_named/Crop_172_Seed.png,images/plant_1020172_983db2eb3f.png,dynamic-seed-derived,Crop_172
+20174,20174,1020174,种子20174,/game-config/seed_images_named/Crop_174_Seed.png,images/plant_1020174_c0bee887dc.png,dynamic-seed-derived,Crop_174
+20182,20182,1020182,种子20182,/game-config/seed_images_named/Crop_182_Seed.png,images/plant_1020182_f39a6103e8.png,dynamic-seed-derived,Crop_182
+20187,20187,1020187,种子20187,/game-config/seed_images_named/Crop_187_Seed.png,images/plant_1020187_4614675982.png,dynamic-seed-derived,Crop_187
+20188,20188,1020188,种子20188,/game-config/seed_images_named/Crop_188_Seed.png,images/plant_1020188_8468f975e4.png,dynamic-seed-derived,Crop_188

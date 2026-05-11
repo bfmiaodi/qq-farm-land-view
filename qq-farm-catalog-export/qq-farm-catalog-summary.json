@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-05-10T16:09:55.245Z",
+  "total": 982,
+  "complete": 977,
+  "incomplete": 5,
+  "by_category": {
+    "item": {
+      "total": 656,
+      "complete": 651,
+      "incomplete": 5
+    },
+    "seed": {
+      "total": 152,
+      "complete": 152,
+      "incomplete": 0
+    },
+    "plant": {
+      "total": 174,
+      "complete": 174,
+      "incomplete": 0
+    }
+  },
+  "by_issue": {
+    "missing_image": 5
+  }
+}

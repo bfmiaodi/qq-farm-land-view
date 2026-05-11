@@ -1,0 +1,5 @@
+﻿category,id,name,type,type_label,source,asset_name
+item,2101,头像框1,10,avatar_frame,ItemInfo,Crop_2101
+item,2102,头像框2,10,avatar_frame,ItemInfo,Crop_2102
+item,2103,头像框3,10,avatar_frame,ItemInfo,Crop_2103
+item,10000,更新版本可见,1,system,ItemInfo,
