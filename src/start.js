@@ -14,6 +14,10 @@ const {
     isWindows,
     setWindowsSystemProxy,
 } = require('./windows-proxy');
+const {
+    isMacOS,
+    setMacOSSystemProxy,
+} = require('./macos-proxy');
 
 const projectRoot = path.resolve(__dirname, '..');
 const mitmAddon = path.join(projectRoot, 'src', 'mitmproxy-qqfarm-addon.py');
@@ -137,6 +141,7 @@ async function main() {
     await waitForServerReady(logProc);
     let mitmProc = null;
     let windowsProxyState = null;
+    let macosProxyState = null;
 
     if (captureMode === 'mitmproxy') {
         mitmProc = spawnProcess('mitm', 'mitmdump', [
@@ -150,6 +155,11 @@ async function main() {
         if (isWindows() && mitmMode === 'regular') {
             windowsProxyState = await setWindowsSystemProxy('127.0.0.1', mitmPort);
             process.stdout.write(`[main] Windows system proxy enabled: 127.0.0.1:${mitmPort}\n`);
+        }
+
+        if (isMacOS() && (mitmMode === 'regular' || mitmMode === 'socks5')) {
+            macosProxyState = await setMacOSSystemProxy('127.0.0.1', mitmPort, mitmMode);
+            process.stdout.write(`[main] macOS system proxy enabled (${mitmMode}): 127.0.0.1:${mitmPort}\n`);
         }
     } else if (captureMode !== 'reqable') {
         process.stderr.write(`[main] unsupported CAPTURE_MODE=${captureMode}, expected mitmproxy or reqable\n`);
@@ -166,6 +176,7 @@ async function main() {
         captureMode,
         mitmMode: captureMode === 'mitmproxy' ? mitmMode : '',
         windowsProxyState,
+        macosProxyState,
         startedAt: new Date().toISOString(),
     });
 

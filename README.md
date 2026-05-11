@@ -60,6 +60,7 @@ npm start
 - Windows 默认使用 `mitmdump --mode regular`
 - macOS / Linux 默认使用 `mitmdump --mode socks5`
 - Windows 在 `mitmproxy + regular` 模式下，`npm start` 会自动把系统代理设为 `127.0.0.1:9000`
+- macOS 在 `mitmproxy` 模式下，`npm start` 会自动把当前网络服务的系统代理设为 `127.0.0.1:9000`
 - 对应地，`npm run stop` 会尝试恢复启动前的系统代理配置
 
 附带命令：
@@ -151,6 +152,11 @@ npm start
 并且客户端需要信任 `mitmproxy` 根证书，否则 HTTPS/WSS 握手会失败。
 
 如果你在 Windows 上直接使用默认的 `npm start`，项目会自动开启系统 `HTTP/HTTPS` 代理到 `127.0.0.1:9000`，不需要再手动去系统设置里填写代理地址。
+
+如果你在 macOS 上直接使用默认的 `npm start`，项目会自动开启系统代理：
+
+- `MITM_PROXY_MODE=socks5` 时自动设置系统 `SOCKS` 代理
+- `MITM_PROXY_MODE=regular` 时自动设置系统 `Web Proxy / Secure Web Proxy`
 
 证书安装入口：
 

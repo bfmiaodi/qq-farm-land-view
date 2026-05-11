@@ -51,6 +51,9 @@ function getJson(url) {
             if (pidInfo.windowsProxyState) {
                 process.stdout.write(`- windows system proxy: enabled (127.0.0.1:${mitmPort})\n`);
             }
+            if (pidInfo.macosProxyState) {
+                process.stdout.write(`- macOS system proxy: enabled (${pidInfo.mitmMode || 'socks5'} 127.0.0.1:${mitmPort})\n`);
+            }
         }
         process.stdout.write(`- started at: ${pidInfo.startedAt}\n`);
     }

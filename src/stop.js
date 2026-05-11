@@ -9,6 +9,10 @@ const {
     restoreWindowsSystemProxy,
     disableWindowsSystemProxy,
 } = require('./windows-proxy');
+const {
+    restoreMacOSSystemProxy,
+    disableMacOSSystemProxy,
+} = require('./macos-proxy');
 
 function killIfAlive(pid, label) {
     if (!pid) return;
@@ -26,10 +30,11 @@ function killIfAlive(pid, label) {
     if (!info) {
         try {
             await disableWindowsSystemProxy();
-            process.stdout.write('[stop] no running process info found, disabled Windows system proxy\n');
+            await disableMacOSSystemProxy();
+            process.stdout.write('[stop] no running process info found, disabled system proxy\n');
         } catch (error) {
             process.stdout.write('[stop] no running process info found\n');
-            process.stderr.write(`[stop] failed to disable Windows system proxy: ${error.message}\n`);
+            process.stderr.write(`[stop] failed to disable system proxy: ${error.message}\n`);
         }
         process.exit(0);
     }
@@ -44,6 +49,15 @@ function killIfAlive(pid, label) {
             process.stdout.write('[stop] restored Windows system proxy\n');
         } catch (error) {
             process.stderr.write(`[stop] failed to restore Windows system proxy: ${error.message}\n`);
+        }
+    }
+
+    if (info.macosProxyState) {
+        try {
+            await restoreMacOSSystemProxy(info.macosProxyState);
+            process.stdout.write('[stop] restored macOS system proxy\n');
+        } catch (error) {
+            process.stderr.write(`[stop] failed to restore macOS system proxy: ${error.message}\n`);
         }
     }
 
