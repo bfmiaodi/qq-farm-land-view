@@ -22,6 +22,6 @@
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
     "express": "^4.21.0",
-    "protobufjs": "^8.0.0"
+    "protobufjs": "^8.3.0"
   }
 }

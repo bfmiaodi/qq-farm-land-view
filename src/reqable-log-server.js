@@ -545,7 +545,7 @@ function renderMonitorPage(state) {
     };
     const mutantLabelByConfigId = {
         1: '冰冻',
-        2: '冰冻',
+        2: '爱心',
         3: '暗化',
         4: '湿润',
         5: '黄金',
@@ -614,9 +614,9 @@ function renderMonitorPage(state) {
     };
         const getLandCardClass = (land) => {
         const mutantIds = Array.isArray(land && land.mutantConfigIds) ? land.mutantConfigIds.map(v => Number(v) || 0) : [];
-        if (mutantIds.includes(4) || mutantIds.includes(1040046)) return 'land-card mutant-heart';
+        if (mutantIds.includes(2) || mutantIds.includes(1040046)) return 'land-card mutant-heart';
         if (mutantIds.includes(5) || mutantIds.includes(1040112) || mutantIds.includes(1040121)) return 'land-card mutant-gold';
-        if (mutantIds.includes(2) || mutantIds.includes(1040025)) return 'land-card mutant-ice';
+        if (mutantIds.includes(1) || mutantIds.includes(1040025)) return 'land-card mutant-ice';
         if (mutantIds.includes(1040109)) return 'land-card mutant-fire';
         if (mutantIds.length) return 'land-card mutant-generic';
         return 'land-card';
@@ -961,7 +961,7 @@ function renderMonitorPage(state) {
 function getMutantLabelsForShare(land) {
     const mutantLabelByConfigId = {
         1: '冰冻',
-        2: '冰冻',
+        2: '爱心',
         3: '暗化',
         4: '湿润',
         5: '黄金',
@@ -1047,7 +1047,7 @@ function buildShareSvg(title, subtitle, lands, meta = {}) {
 
     const getShareCardStyle = (land) => {
         const mutantIds = Array.isArray(land && land.mutantConfigIds) ? land.mutantConfigIds.map(v => Number(v) || 0) : [];
-        if (mutantIds.includes(4) || mutantIds.includes(1040046)) {
+        if (mutantIds.includes(2) || mutantIds.includes(1040046)) {
             return {
                 fill: 'url(#cardHeart)',
                 stroke: '#efb6d0',
@@ -1061,7 +1061,7 @@ function buildShareSvg(title, subtitle, lands, meta = {}) {
                 mutantColor: '#9a6a00',
             };
         }
-        if (mutantIds.includes(2) || mutantIds.includes(1040025)) {
+        if (mutantIds.includes(1) || mutantIds.includes(1040025)) {
             return {
                 fill: 'url(#cardIce)',
                 stroke: '#a9d3f2',
